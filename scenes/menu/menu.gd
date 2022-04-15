@@ -21,7 +21,7 @@ func _on_PlayButton_pressed() -> void:
 			"val": 15
 		},
 	}
-	Game.change_scene("res://scenes/gameplay/gameplay.tscn", params)
+	Game.change_scene("res://scenes/TestScene1.tscn", params)
 
 
 func _on_ExitButton_pressed() -> void:

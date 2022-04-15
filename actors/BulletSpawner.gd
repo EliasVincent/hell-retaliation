@@ -13,12 +13,20 @@ export (float) var bullet_speed = 5;
 export (Vector2) var bullet_velocity = Vector2(1,0);
 export (bool) var use_velocity = false; # If false use rotation, If true use velocity
 
+# access rotation of Bullets themselves
+export (float) var bulletRotationChange = 0
+# super fancy spiral effect ON THE SPAWNER
+export (float) var spawnerRotationChange = 0
+
 var rotations = [];
 export (bool) var log_to_console;
 
 func _ready():
 	$Timer.wait_time = spawn_rate
 	$Timer.start()
+
+func _process(delta):
+	rotation_degrees += spawnerRotationChange * delta
 
 func random_rotations():
 	rotations = [];
@@ -53,11 +61,13 @@ func spawn_bullets():
 			get_node("/root").add_child(spawned_bullets[i]);
 			
 		# Apply Fields
-		spawned_bullets[i].rotation_degrees = rotations[i];
+		# rotation_degress from spawnerRotationChange
+		spawned_bullets[i].rotation_degrees = rotations[i] + rotation_degrees;
 		spawned_bullets[i].speed = bullet_speed;
 		spawned_bullets[i].velocity = bullet_velocity;
 		spawned_bullets[i].global_position = global_position;
 		spawned_bullets[i].use_velocity = use_velocity;
+		spawned_bullets[i].rotation_change = bulletRotationChange;
 		
 		if (log_to_console):
 			print("Bullet " + str(i) + " @ " + str(rotations[i]) + "deg");

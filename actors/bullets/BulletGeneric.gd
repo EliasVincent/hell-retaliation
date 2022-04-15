@@ -10,7 +10,8 @@ export (float) var speed = 200
 #export (float) var lifetime = 10.0
 export (Vector2) var velocity = Vector2()
 export (bool) var use_velocity
-export (float) var rotation_change
+#export (float) var rotation_change
+var rotation_change = 0.0
 
 func _ready():
 	#$Timer.start(lifetime)

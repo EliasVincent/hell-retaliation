@@ -7,15 +7,26 @@
 [node name="Border4" parent="." instance=ExtResource( 1 )]
 position = Vector2( 56, 232 )
 scale = Vector2( 1.026, 3.12 )
+dir = 3
+posX = 56
+posY = 232
 
 [node name="Border3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1224, 232 )
 scale = Vector2( 1.026, 3.12 )
+dir = 2
+posX = 1224
+posY = 232
 
 [node name="Border2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 640, 648 )
 scale = Vector2( 3.12, 1.026 )
+dir = 1
+posX = 640
+posY = 648
 
 [node name="Border" parent="." instance=ExtResource( 1 )]
 position = Vector2( 640, -8 )
 scale = Vector2( 3.12, 1.0262 )
+posX = 640
+posY = -8

@@ -8,8 +8,6 @@ radius = 32.0
 
 [node name="BulletGeneric" type="Area2D" groups=["BULLET"]]
 scale = Vector2( 0.5, 0.5 )
-collision_layer = 0
-monitorable = false
 script = ExtResource( 1 )
 velocity = Vector2( 3, 1 )
 use_velocity = true

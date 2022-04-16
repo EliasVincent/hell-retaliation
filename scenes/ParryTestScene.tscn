@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/BulletSpawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/Player.tscn" type="PackedScene" id=2]
+
+[node name="ParryTestScene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 592, 536 )
+
+[node name="BulletSpawner" parent="." instance=ExtResource( 1 )]
+position = Vector2( 584, 32 )
+number_of_bullets = 1
+is_random = false
+spawn_rate = 0.8
+bullet_velocity = Vector2( 0, 1 )
+use_velocity = true

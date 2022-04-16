@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export (int) var speed = 200;
-export (int) var start_hp : int = 3;
+export (int) var start_hp : int = 100;
 onready var hp = start_hp;
 var can_take_damage = true;
 onready var animation_player = $AnimationPlayer
@@ -34,19 +34,23 @@ func _physics_process(delta):
 	# ColorState
 	if Input.is_action_just_pressed("change_color"):
 		if color_state == ColorState.BLACK:
-			color_state = ColorState.WHITE;
-			animation_player.play("WHITE");
+			if can_take_damage:
+				color_state = ColorState.WHITE;
+				animation_player.play("WHITE");
 		else:
-			color_state = ColorState.BLACK;
-			animation_player.play("BLACK");
-
+			if can_take_damage:
+				color_state = ColorState.BLACK;
+				animation_player.play("BLACK");
+	
+	
 # Andere Scripts (wie Bullets) können diese Methode hier aufrufen
 # Player ist so lange unverwundbar wie die Animation dauert
 # Zum ändern des Cooldowns die Länge von HIT im AnimationPlayer ändern
 func take_damage(damage: float):
+	print('damage', can_take_damage)
 	if (can_take_damage):
 		can_take_damage = false;
-		#hp -= damage
+		GlobalVariables.playerHP -= damage
 		if color_state == ColorState.BLACK:
 			animation_player.play("HIT_BLACK");
 		else:
@@ -55,7 +59,7 @@ func take_damage(damage: float):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "HIT_BLACK" or anim_name == "HIT_WHITE":
 		can_take_damage = true
-		if hp == 0:
+		if GlobalVariables.playerHP == 0:
 			#Game.change_scene("res://ui/GameOver.tscn")
 			print("YOU DIED")
 
@@ -69,4 +73,5 @@ func _ready():
 	else:
 		color_state = ColorState.BLACK;
 		animation_player.play("BLACK");
-	pass
+	
+	GlobalVariables.playerHP = start_hp

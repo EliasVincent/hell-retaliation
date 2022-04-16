@@ -1,20 +1,22 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://prefab/Border.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/BulletSpawner.tscn" type="PackedScene" id=3]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Border4" parent="." instance=ExtResource( 1 )]
 position = Vector2( -376, 336 )
 scale = Vector2( 2.12, 3.2 )
-dir = 3
+dir = 2
 posX = -376
 posY = 336
 
 [node name="Border3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1688, 392 )
 scale = Vector2( 2.12, 3.2 )
-dir = 2
+dir = 3
 posX = 1688
 posY = 392
 
@@ -30,3 +32,17 @@ position = Vector2( 648, -168 )
 scale = Vector2( 3.2, 2.12 )
 posX = 648
 posY = -168
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 622, 370 )
+
+[node name="BulletSpawner" parent="." instance=ExtResource( 3 )]
+position = Vector2( 631, 13 )
+min_rotation = 200
+is_parent = true
+
+[node name="BulletSpawner2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 631, 13 )
+min_rotation = 200
+is_parent = true
+bulletColor = "BLACK"

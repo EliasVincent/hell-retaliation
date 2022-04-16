@@ -58,4 +58,4 @@ func _on_BulletGeneric_body_entered(body):
 		if body.get_color_state() == color_state:
 			pass
 		else:
-			body.take_damage(1.0); # siehe Player Skript
+			body.take_damage(25.0); # siehe Player Skript

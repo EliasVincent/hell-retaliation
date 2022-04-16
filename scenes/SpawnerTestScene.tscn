@@ -10,8 +10,9 @@
 position = Vector2( 657, 581 )
 
 [node name="BulletSpawner" parent="." instance=ExtResource( 2 )]
-position = Vector2( 647, 103 )
+position = Vector2( 645, 59 )
 min_rotation = 190
+number_of_bullets = 8
 is_random = false
 bulletColor = "BLACK"
 

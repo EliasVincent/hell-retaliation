@@ -87,6 +87,10 @@ func parry(bullets: Array):
 	
 	parry_bullet_rotation_degrees += 30;
 	bullets_to_add = [];
+	
+	for bullet in bullets:
+		# kann auch ne Animation sein wie sie verschwinden
+		bullet.queue_free()
 func distributed_rotations(bulletArray):
 	print(bulletArray.size())
 	parry_rotations = [];
@@ -114,6 +118,7 @@ func instance_parry_bullet(bulletArray):
 		spawned_bullets[i].bulletColor = bulletColor;
 		# _ready() does not work for the color
 		spawned_bullets[i].init();
+		
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

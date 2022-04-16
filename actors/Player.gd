@@ -46,13 +46,14 @@ func _physics_process(delta):
 func take_damage(damage: float):
 	if (can_take_damage):
 		can_take_damage = false;
-		hp -= damage
-		animation_player.play("HIT")
-	else:
-		return
+		#hp -= damage
+		if color_state == ColorState.BLACK:
+			animation_player.play("HIT_BLACK");
+		else:
+			animation_player.play("HIT_WHITE");
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "HIT":
+	if anim_name == "HIT_BLACK" or anim_name == "HIT_WHITE":
 		can_take_damage = true
 		if hp == 0:
 			#Game.change_scene("res://ui/GameOver.tscn")

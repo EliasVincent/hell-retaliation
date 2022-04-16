@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/bullethellPlayer.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/white_square.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -90,9 +90,12 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -2.38419e-07, -8 )
+scale = Vector2( 0.0950363, 0.0946601 )
 texture = ExtResource( 2 )
 
 [node name="Sprite2" type="Sprite" parent="."]
+visible = false
 modulate = Color( 1, 0, 0, 1 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )

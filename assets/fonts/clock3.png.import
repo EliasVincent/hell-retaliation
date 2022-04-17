@@ -2,25 +2,25 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/clock_spr.png-a05e208615a93604d619e3a830e29edd.stex"
+path="res://.import/clock3.png-df23c46df54941f433d91f780b2664b5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/clock_spr.png"
-dest_files=[ "res://.import/clock_spr.png-a05e208615a93604d619e3a830e29edd.stex" ]
+source_file="res://assets/fonts/clock3.png"
+dest_files=[ "res://.import/clock3.png-df23c46df54941f433d91f780b2664b5.stex" ]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=2
+compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

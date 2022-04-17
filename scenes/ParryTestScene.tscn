@@ -15,3 +15,25 @@ is_random = false
 spawn_rate = 0.8
 bullet_velocity = Vector2( 0, 1 )
 use_velocity = true
+
+[node name="BulletSpawner2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 952, 32 )
+number_of_bullets = 1
+is_random = false
+spawn_rate = 0.8
+bullet_velocity = Vector2( 0, 1 )
+use_velocity = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = 496.0
+margin_top = 24.0
+margin_right = 536.0
+margin_bottom = 38.0
+text = "1"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 856.0
+margin_top = 24.0
+margin_right = 896.0
+margin_bottom = 38.0
+text = "2"

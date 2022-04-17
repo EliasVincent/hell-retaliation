@@ -70,6 +70,7 @@ func spawn_bullets():
 		spawned_bullets[i].global_position = global_position;
 		spawned_bullets[i].use_velocity = use_velocity;
 		spawned_bullets[i].rotation_change = bulletRotationChange;
+		spawned_bullets[i].spawner = self;
 		spawned_bullets[i].bulletColor = bulletColor;
 		# _ready() does not work for the color
 		spawned_bullets[i].init();

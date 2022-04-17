@@ -1,8 +1,8 @@
 extends Area2D
 
 export (float) var speed = 400
-export (float) var time = 4.0
-export (float) var initTime = 0.2
+export (float) var time = 2.0
+export (float) var initTime = 0.3
 onready var timer = $Timer
 onready var initTimer = $InitTimer
 
@@ -13,6 +13,10 @@ var rotation_change = 0.0
 export (String) var bulletColor
 
 var isIniting = true
+# BulletSpawner where the original Bullet came from
+var spawner
+var flyToEnemyNow = false
+var newParent : Node
 
 func _ready():
 	print("I'm instanced!")
@@ -21,27 +25,39 @@ func _ready():
 	#TODO: set velocity and make it fly for a short while to have it actually around the player and not dead on him
 
 func init():
-	pass
+	print("Parry Bullet came from: ", spawner)
 
 
 func _process(delta):
 	# either use velocity or rotation
-	if use_velocity:
-		position += velocity.normalized() * speed * delta
-	else:
-		if isIniting:
-			position += Vector2(cos(rotation), -sin(rotation)) * speed * delta
+	if not flyToEnemyNow:
+		if use_velocity:
+			position += velocity.normalized() * speed * delta
 		else:
-			position += Vector2(0,0)
-	# super fancy spiral effect
-	rotation_degrees += rotation_change * delta
+			if isIniting:
+				position += Vector2(cos(rotation), -sin(rotation)) * speed * delta
+			else:
+				position += Vector2(0,0)
+		# super fancy spiral effect
+		rotation_degrees += rotation_change * delta
+	
+	if flyToEnemyNow:
+		position = position.move_toward(spawner.global_position, 400 * delta)
 
 func fly_toward_enemy():
-	print("WEEEEEE")
-	hide()
+	print("before: ", global_position)
+	var prevPos = global_position
+	newParent = spawner.get_parent()
+	get_parent().remove_child(self)
+	newParent.add_child(self)
+	flyToEnemyNow = true
+	position = prevPos
+	print("after: ", global_position)
+	
 
 func _on_VisibilityNotifier2D_screen_exited():
-	queue_free()
+	#queue_free()
+	pass
 
 
 func _on_Timer_timeout():

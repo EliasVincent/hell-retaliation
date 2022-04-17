@@ -15,6 +15,7 @@ export (bool) var use_velocity
 #export (float) var rotation_change
 var rotation_change = 0.0
 export (String) var bulletColor
+var spawner
 
 enum ColorState {
 	B,
@@ -51,6 +52,8 @@ func _process(delta):
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
+func get_spawner():
+	return spawner
 
 func _on_BulletGeneric_body_entered(body):
 	# Body identifizieren geht auch mit is_in_group oder has_method

@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://actors/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/bullethellPlayer.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/playerNEW.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/white_square.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/emptywhitecircle.png" type="Texture" id=4]
 
@@ -94,8 +94,8 @@ radius = 40.0
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -2.38419e-07, -8 )
-scale = Vector2( 0.0950363, 0.0946601 )
+position = Vector2( 0, -8 )
+scale = Vector2( 0.847518, 0.880663 )
 texture = ExtResource( 2 )
 
 [node name="Sprite2" type="Sprite" parent="."]

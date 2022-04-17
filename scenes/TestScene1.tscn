@@ -38,4 +38,6 @@ position = Vector2( 622, 370 )
 
 [node name="ClockSpawner" parent="." instance=ExtResource( 3 )]
 position = Vector2( 352, 344 )
-changeColorAfterShot = true
+
+[node name="ClockSpawner2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 952, 344 )

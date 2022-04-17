@@ -5,18 +5,26 @@ export (float) var time = 2.0
 export (float) var initTime = 0.3
 onready var timer = $Timer
 onready var initTimer = $InitTimer
+onready var sprite = $Sprite
+onready var bSprite = $BSprite
 
 export (Vector2) var velocity = Vector2()
 export (bool) var use_velocity
 #export (float) var rotation_change
 var rotation_change = 0.0
-export (String) var bulletColor
+var bulletColorString : String
 
 var isIniting = true
 # BulletSpawner where the original Bullet came from
 var spawner
 var flyToEnemyNow = false
 var newParent : Node
+
+enum ColorState {
+	B,
+	A
+}
+onready var color_state
 
 func _ready():
 	print("I'm instanced!")
@@ -25,7 +33,15 @@ func _ready():
 	#TODO: set velocity and make it fly for a short while to have it actually around the player and not dead on him
 
 func init():
-	print("Parry Bullet came from: ", spawner)
+	print("ParryBullet ColorState ", color_state)
+	if color_state == ColorState.B:
+		print("I SHOULD BE BLACK")
+		sprite.hide()
+		bSprite.show()
+	else:
+		sprite.show()
+		bSprite.hide()
+		color_state = ColorState.A
 
 
 func _process(delta):

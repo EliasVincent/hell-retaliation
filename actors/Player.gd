@@ -92,7 +92,6 @@ func parry(bullets: Array):
 		# kann auch ne Animation sein wie sie verschwinden
 		bullet.queue_free()
 func distributed_rotations(bulletArray):
-	print(bulletArray.size())
 	parry_rotations = [];
 	for i in range(0, bulletArray.size()):
 		# evenly distributed
@@ -118,7 +117,9 @@ func instance_parry_bullet(bulletArray):
 		
 		spawned_bullets[i].spawner = bulletArray[i].get_spawner();
 		
-		spawned_bullets[i].bulletColor = bulletColor;
+		
+		spawned_bullets[i].color_state = color_state;
+		print("Player ColorState: ", color_state)
 		# _ready() does not work for the color
 		spawned_bullets[i].init();
 		
@@ -150,9 +151,10 @@ func _ready():
 
 func _on_ParryArea_area_entered(area):
 	if area.is_in_group("BULLET"):
-		# if it's the same color:
-		parryable_bullets.append(area)
-		#print("parryable_bullets", parryable_bullets)
+		if area.color_state == color_state:
+			# if it's the same color:
+			parryable_bullets.append(area)
+			#print("parryable_bullets", parryable_bullets)
 
 
 func _on_ParryArea_area_exited(area):

@@ -55,6 +55,14 @@ func _on_VisibilityNotifier2D_screen_exited():
 func get_spawner():
 	return spawner
 
+func get_color_state_string():
+	if color_state == ColorState.B:
+		return "B"
+	if color_state == ColorState.A:
+		return "A"
+	else:
+		return "ERROR"
+
 func _on_BulletGeneric_body_entered(body):
 	# Body identifizieren geht auch mit is_in_group oder has_method
 	if body.name == "Player":

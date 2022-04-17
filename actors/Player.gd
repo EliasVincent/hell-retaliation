@@ -16,10 +16,10 @@ onready var screen_borders = Vector2(
 );
 
 enum ColorState {
-	BLACK,
-	WHITE
+	B,
+	A
 }
-onready var color_state = ColorState.BLACK;
+onready var color_state = ColorState.B;
 
 onready var parryable_bullets = []
 onready var bullets_to_add = []
@@ -35,7 +35,7 @@ export (Vector2) var bullet_velocity = Vector2(1,0);
 export (bool) var use_velocity = false; # If false use rotation, If true use velocity
 # access rotation of Bullets themselves
 export (float) var bulletRotationChange = 0
-export (String) var bulletColor = "WHITE";
+var bulletColor = "A";
 
 func _physics_process(delta):
 	# Input
@@ -51,14 +51,14 @@ func _physics_process(delta):
 	
 	# ColorState
 	if Input.is_action_just_pressed("change_color"):
-		if color_state == ColorState.BLACK:
+		if color_state == ColorState.B:
 			if can_take_damage:
-				color_state = ColorState.WHITE;
-				animation_player.play("WHITE");
+				color_state = ColorState.A;
+				animation_player.play("A");
 		else:
 			if can_take_damage:
-				color_state = ColorState.BLACK;
-				animation_player.play("BLACK");
+				color_state = ColorState.B;
+				animation_player.play("B");
 	
 	# Parry
 	if Input.is_action_just_pressed("parry"):
@@ -73,10 +73,10 @@ func take_damage(damage: float):
 	if (can_take_damage):
 		can_take_damage = false;
 		GlobalVariables.playerHP -= damage
-		if color_state == ColorState.BLACK:
-			animation_player.play("HIT_BLACK");
+		if color_state == ColorState.B:
+			animation_player.play("HIT_B");
 		else:
-			animation_player.play("HIT_WHITE");
+			animation_player.play("HIT_A");
 
 
 # PARRY STUFF OH LAWD
@@ -122,7 +122,7 @@ func instance_parry_bullet(bulletArray):
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "HIT_BLACK" or anim_name == "HIT_WHITE":
+	if anim_name == "HIT_B" or anim_name == "HIT_A":
 		can_take_damage = true
 		if GlobalVariables.playerHP == 0:
 			#Game.change_scene("res://ui/GameOver.tscn")
@@ -135,12 +135,12 @@ func get_color_state():
 
 
 func _ready():
-	if color_state == ColorState.BLACK:
-		color_state = ColorState.WHITE;
-		animation_player.play("WHITE");
+	if color_state == ColorState.B:
+		color_state = ColorState.A;
+		animation_player.play("A");
 	else:
-		color_state = ColorState.BLACK;
-		animation_player.play("BLACK");
+		color_state = ColorState.B;
+		animation_player.play("B");
 	
 	GlobalVariables.playerHP = start_hp
 

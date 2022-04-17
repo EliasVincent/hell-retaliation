@@ -8,8 +8,24 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
+[sub_resource type="Animation" id=5]
+resource_name = "A"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=4]
-resource_name = "BLACK"
+resource_name = "B"
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -24,24 +40,8 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "HIT_BLACK"
-length = 0.9
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.866736, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 0.278431 ), Color( 0, 0, 0, 1 ) ]
-}
-
 [sub_resource type="Animation" id=2]
-resource_name = "HIT_WHITE"
+resource_name = "HIT_A"
 length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -54,6 +54,22 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "HIT_B"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.866736, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 0.278431 ), Color( 0, 0, 0, 1 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -69,22 +85,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "WHITE"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="CircleShape2D" id=7]
@@ -108,11 +108,11 @@ texture = ExtResource( 3 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/BLACK = SubResource( 4 )
-anims/HIT_BLACK = SubResource( 6 )
-anims/HIT_WHITE = SubResource( 2 )
+anims/A = SubResource( 5 )
+anims/B = SubResource( 4 )
+anims/HIT_A = SubResource( 2 )
+anims/HIT_B = SubResource( 6 )
 anims/RESET = SubResource( 3 )
-anims/WHITE = SubResource( 5 )
 
 [node name="ParryArea" type="Area2D" parent="."]
 

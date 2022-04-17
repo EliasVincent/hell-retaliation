@@ -13,7 +13,7 @@ export (float) var bullet_speed = 5;
 export (Vector2) var bullet_velocity = Vector2(1,0);
 export (bool) var use_velocity = false; # If false use rotation, If true use velocity
 
-export (String) var bulletColor = "WHITE";
+export (String) var bulletColor = "A";
 
 # access rotation of Bullets themselves
 export (float) var bulletRotationChange = 0

@@ -17,8 +17,8 @@ var rotation_change = 0.0
 export (String) var bulletColor
 
 enum ColorState {
-	BLACK,
-	WHITE
+	B,
+	A
 }
 onready var color_state;
 
@@ -28,14 +28,14 @@ func _ready():
 	pass
 
 func init():
-	if bulletColor == "BLACK":
+	if bulletColor == "B":
 		sprite.hide()
 		blackSprite.show()
-		color_state = ColorState.BLACK
+		color_state = ColorState.B
 	else:
 		sprite.show()
 		blackSprite.hide()
-		color_state = ColorState.WHITE
+		color_state = ColorState.A
 
 func _process(delta):
 	# either use velocity or rotation

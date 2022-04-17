@@ -14,7 +14,7 @@ position = Vector2( 645, 59 )
 min_rotation = 190
 number_of_bullets = 8
 is_random = false
-bulletColor = "BLACK"
+bulletColor = "B"
 
 [node name="DebugInfo" parent="." instance=ExtResource( 3 )]
 margin_right = 1280.0

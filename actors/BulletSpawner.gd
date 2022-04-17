@@ -6,8 +6,7 @@ export var min_rotation = 0;
 export var max_rotation = 360;
 export var number_of_bullets = 8;
 export (bool) var is_random = false;
-export (bool) var is_parent = true;
-export (bool) var is_manual = false;
+#export (bool) var is_manual = false;
 export (float) var spawn_rate = 0.4;
 export (float) var bullet_speed = 5;
 export (Vector2) var bullet_velocity = Vector2(1,0);
@@ -26,6 +25,8 @@ export (float) var rotationChangeAfterTick = 0
 
 var rotations = [];
 export (bool) var log_to_console;
+
+export var can_fire = true
 
 func _ready():
 	$Timer.wait_time = spawn_rate
@@ -72,11 +73,10 @@ func spawn_bullets():
 		spawned_bullets.append(bullet);
 		
 		# Parenting
-		if (is_parent):
-			add_child(spawned_bullets[i]);
-		else:
-			get_node("/root").add_child(spawned_bullets[i]);
-			
+		# Bullets sind keine Children sondern ein Node unter dem Spawner
+		# Heißt alle Nodes unter dem Spawner werden über den Bullets gerendert
+		get_parent().add_child_below_node(self, spawned_bullets[i]);
+		
 		# Apply Fields
 		# rotation_degress from spawnerRotationChange
 		spawned_bullets[i].rotation_degrees = rotations[i] + rotation_degrees;
@@ -96,7 +96,9 @@ func spawn_bullets():
 	return spawned_bullets;
 
 func _on_Timer_timeout():
-	if !is_manual:
+#	if !is_manual:
+#		spawn_bullets();
+	if can_fire:
 		spawn_bullets();
 	
 	if (log_to_console):

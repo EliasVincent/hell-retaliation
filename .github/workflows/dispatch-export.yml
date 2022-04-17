@@ -17,7 +17,7 @@ on:
       export_name:
         description: "Export Name"
         required: true
-        default: "godot-game-template"
+        default: "bullet-hell-jam-2022"
       release_android:
         description: "Android Release Build"
         required: false

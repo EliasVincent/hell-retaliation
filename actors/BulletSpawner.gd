@@ -20,6 +20,9 @@ export (float) var bulletRotationChange = 0
 # super fancy spiral effect ON THE SPAWNER
 export (float) var spawnerRotationChange = 0
 
+# change rotation after each shot
+export (float) var rotationChangeAfterTick = 0
+
 var rotations = [];
 export (bool) var log_to_console;
 
@@ -44,6 +47,10 @@ func distributed_rotations():
 		rotations.append((fraction * difference) + min_rotation);
 
 func spawn_bullets():
+	
+	min_rotation -= rotationChangeAfterTick
+	max_rotation -= rotationChangeAfterTick
+	
 	if (is_random):
 		random_rotations();
 	else:

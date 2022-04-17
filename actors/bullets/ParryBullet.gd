@@ -7,6 +7,7 @@ onready var timer = $Timer
 onready var initTimer = $InitTimer
 onready var sprite = $Sprite
 onready var bSprite = $BSprite
+onready var animationPlayer = $AnimationPlayer
 
 export (Vector2) var velocity = Vector2()
 export (bool) var use_velocity
@@ -61,14 +62,15 @@ func _process(delta):
 		position = position.move_toward(spawner.global_position, 400 * delta)
 
 func fly_toward_enemy():
-	print("before: ", global_position)
-	var prevPos = global_position
-	newParent = spawner.get_parent()
-	get_parent().remove_child(self)
-	newParent.add_child(self)
-	flyToEnemyNow = true
-	position = prevPos
-	print("after: ", global_position)
+	if spawner.can_fire == true:
+		var prevPos = global_position
+		newParent = spawner.get_parent()
+		get_parent().remove_child(self)
+		newParent.add_child(self)
+		flyToEnemyNow = true
+		position = prevPos
+	else:
+		animationPlayer.play("DISSOLVE")
 	
 
 func _on_VisibilityNotifier2D_screen_exited():

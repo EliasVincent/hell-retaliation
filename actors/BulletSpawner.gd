@@ -13,12 +13,16 @@ export (float) var bullet_speed = 5;
 export (Vector2) var bullet_velocity = Vector2(1,0);
 export (bool) var use_velocity = false; # If false use rotation, If true use velocity
 
+export (bool) var changeColorAfterShot = false;
 export (String) var bulletColor = "A";
 
 # access rotation of Bullets themselves
 export (float) var bulletRotationChange = 0
 # super fancy spiral effect ON THE SPAWNER
 export (float) var spawnerRotationChange = 0
+
+# change rotation after each shot
+export (float) var rotationChangeAfterTick = 0
 
 var rotations = [];
 export (bool) var log_to_console;
@@ -44,6 +48,17 @@ func distributed_rotations():
 		rotations.append((fraction * difference) + min_rotation);
 
 func spawn_bullets():
+	#Change rotation after each shot IF ENABLED
+	min_rotation -= rotationChangeAfterTick
+	max_rotation -= rotationChangeAfterTick
+	
+	#Change color after each shot IF ENABLED
+	if (changeColorAfterShot):
+		if (bulletColor == "A"):
+			bulletColor = "B"
+		else:
+			bulletColor = "A"
+	
 	if (is_random):
 		random_rotations();
 	else:

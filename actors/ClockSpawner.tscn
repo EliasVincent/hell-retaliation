@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://actors/BulletSpawner.gd" type="Script" id=1]
+[ext_resource path="res://actors/bullets/BulletGeneric.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sprites/clock_spr.png" type="Texture" id=3]
+
+[node name="ClockSpawner" type="Node2D"]
+script = ExtResource( 1 )
+bullet_scene = ExtResource( 2 )
+min_rotation = 35
+max_rotation = 55
+number_of_bullets = 3
+spawn_rate = 1.0
+bullet_speed = 100.0
+changeColorAfterShot = true
+rotationChangeAfterTick = 90.0
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

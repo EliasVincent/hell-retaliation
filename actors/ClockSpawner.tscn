@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/BulletSpawner.gd" type="Script" id=1]
 [ext_resource path="res://actors/bullets/BulletGeneric.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/sprites/clockSpawner/clock4.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/clockSpawner/clock3.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/clockSpawner/clock2.png" type="Texture" id=6]
+[ext_resource path="res://actors/EnemyManager.gd" type="Script" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -15,8 +16,8 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 28.0179
+[sub_resource type="CircleShape2D" id=2]
+radius = 29.0172
 
 [node name="ClockSpawner" type="Node2D" groups=["ENEMY"]]
 script = ExtResource( 1 )
@@ -31,6 +32,7 @@ rotationChangeAfterTick = 90.0
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
+frame = 3
 speed_scale = 0.2
 playing = true
 
@@ -39,10 +41,10 @@ playing = true
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="EnemyManager" type="Node2D" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 7 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="EnemyManager" method="_on_Area2D_area_entered"]

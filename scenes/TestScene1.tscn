@@ -38,6 +38,4 @@ position = Vector2( 622, 370 )
 
 [node name="ClockSpawner" parent="." instance=ExtResource( 3 )]
 position = Vector2( 352, 344 )
-min_rotation = 35
-max_rotation = 55
-rotationChangeAfterTick = 90.0
+changeColorAfterShot = true

@@ -7,10 +7,13 @@
 [node name="ClockSpawner" type="Node2D"]
 script = ExtResource( 1 )
 bullet_scene = ExtResource( 2 )
-max_rotation = 45
+min_rotation = 35
+max_rotation = 55
 number_of_bullets = 3
 spawn_rate = 1.0
 bullet_speed = 100.0
+changeColorAfterShot = true
+rotationChangeAfterTick = 90.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )

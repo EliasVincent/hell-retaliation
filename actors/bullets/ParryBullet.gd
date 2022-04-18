@@ -31,7 +31,6 @@ func _ready():
 	#print("I'm instanced!")
 	timer.start(time)
 	initTimer.start(initTime)
-	#TODO: set velocity and make it fly for a short while to have it actually around the player and not dead on him
 
 func init():
 	#print("ParryBullet ColorState ", color_state)
@@ -59,16 +58,22 @@ func _physics_process(delta):
 		rotation_degrees += rotation_change * delta
 	
 	if flyToEnemyNow:
-		position = position.move_toward(spawner.global_position, 400 * delta)
+		if is_instance_valid(spawner):
+			position = position.move_toward(spawner.global_position, 400 * delta)
+		else:
+			animationPlayer.play("DISSOLVE")
 
 func fly_toward_enemy():
-	if spawner.can_fire == true:
-		var prevPos = global_position
-		newParent = spawner.get_parent()
-		get_parent().remove_child(self)
-		newParent.add_child(self)
-		flyToEnemyNow = true
-		position = prevPos
+	if is_instance_valid(spawner):
+		if spawner.can_fire == true:
+			var prevPos = global_position
+			newParent = spawner.get_parent()
+			get_parent().remove_child(self)
+			newParent.add_child(self)
+			flyToEnemyNow = true
+			position = prevPos
+		else:
+			animationPlayer.play("DISSOLVE")
 	else:
 		animationPlayer.play("DISSOLVE")
 	

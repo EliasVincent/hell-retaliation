@@ -123,6 +123,15 @@ texture = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ParryArea"]
 shape = SubResource( 7 )
 
+[node name="ParryCooldownTimer" type="Timer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+margin_left = -24.0
+margin_top = 48.0
+margin_right = 16.0
+margin_bottom = 62.0
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="ParryArea" to="." method="_on_ParryArea_area_entered"]
 [connection signal="area_exited" from="ParryArea" to="." method="_on_ParryArea_area_exited"]
+[connection signal="timeout" from="ParryCooldownTimer" to="." method="_on_ParryCooldownTimer_timeout"]

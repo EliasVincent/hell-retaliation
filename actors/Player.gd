@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+export (float) var parry_cooldown = 0.8
 export (int) var speed = 200;
 export (int) var start_hp : int = 100;
 onready var hp = start_hp;
@@ -7,7 +8,10 @@ var can_take_damage = true;
 onready var animation_player = $AnimationPlayer
 onready var player_sprite = $Sprite
 onready var parry_area = $ParryArea
+onready var parry_cooldown_timer = $ParryCooldownTimer
+onready var debug_label = $Label
 onready var parry_bullet : PackedScene = preload("res://actors/bullets/ParryBullet.tscn")
+var can_parry = true
 
 export (bool) var clamp_to_window_borders = true;
 onready var screen_borders = Vector2(
@@ -58,7 +62,15 @@ func _physics_process(delta):
 	
 	# Parry
 	if Input.is_action_just_pressed("parry"):
-		parry(parryable_bullets);
+		if can_parry:
+			can_parry = false
+			parry_cooldown_timer.start();
+			parry(parryable_bullets);
+	
+	if can_parry:
+		debug_label.text = str("READY")
+	if not can_parry:
+		debug_label.text = str("COOLDOWN")
 
 func _process(delta):
 	# Clamp to screen borders, make sure we're in the window
@@ -161,3 +173,8 @@ func _on_ParryArea_area_exited(area):
 	if area.is_in_group("BULLET"):
 		parryable_bullets.erase(area)
 		#print("parryable_bullets", parryable_bullets)
+
+
+func _on_ParryCooldownTimer_timeout():
+	can_parry = true
+	

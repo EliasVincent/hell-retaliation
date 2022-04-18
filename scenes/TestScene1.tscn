@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://prefab/Border.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://actors/ClockSpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/BulletSpawner.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
 
@@ -41,3 +42,25 @@ position = Vector2( 352, 344 )
 
 [node name="ClockSpawner2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 952, 344 )
+spawn_rate = 0.7
+
+[node name="ClockSpawner3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 785, 123 )
+spawn_rate = 0.6
+
+[node name="ClockSpawner4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 904, 485 )
+spawn_rate = 0.5
+
+[node name="ClockSpawner5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 381, 185 )
+
+[node name="BulletSpawner2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1083, 352 )
+min_rotation = 90
+max_rotation = 270
+number_of_bullets = 8
+is_random = false
+spawn_rate = 2.0
+bullet_speed = 300.0
+bulletColor = "B"

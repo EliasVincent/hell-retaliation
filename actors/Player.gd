@@ -41,13 +41,25 @@ export (bool) var use_velocity = false; # If false use rotation, If true use vel
 export (float) var bulletRotationChange = 0
 var bulletColor = "A";
 
+# dash
+onready var dash_cooldown_timer = $DashCooldownTimer
+onready var dash_duration_timer = $DashDurationTimer
+var can_dash = true
+var is_dashing = false
+export (float) var dash_cooldown = 0.2
+export (float) var dash_duration = 0.09
+export (float) var dash_speed = 1400
+
 func _physics_process(delta):
 	# Input
 	var velocity := Vector2()
 	velocity.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	velocity.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up");
 	velocity = velocity.normalized();
-	velocity = move_and_slide(velocity * speed);
+	if is_dashing :
+		velocity = move_and_slide(velocity * dash_speed)
+	else :
+		velocity = move_and_slide(velocity * speed);
 	
 	# ColorState
 	if Input.is_action_just_pressed("change_color"):
@@ -71,6 +83,14 @@ func _physics_process(delta):
 		debug_label.text = str("READY")
 	if not can_parry:
 		debug_label.text = str("COOLDOWN")
+	
+	# Dash
+	if Input.is_action_just_pressed("dash"):
+		if can_dash:
+			can_dash = false
+			is_dashing = true
+			dash_cooldown_timer.start(dash_cooldown);
+			dash_duration_timer.start(dash_duration);
 
 func _process(delta):
 	# Clamp to screen borders, make sure we're in the window
@@ -134,7 +154,7 @@ func instance_parry_bullet(bulletArray):
 		print("Player ColorState: ", color_state)
 		# _ready() does not work for the color
 		spawned_bullets[i].init();
-		
+
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
@@ -146,8 +166,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func get_color_state():
 	return color_state;
-
-
 
 
 func _ready():
@@ -168,7 +186,6 @@ func _on_ParryArea_area_entered(area):
 			parryable_bullets.append(area)
 			#print("parryable_bullets", parryable_bullets)
 
-
 func _on_ParryArea_area_exited(area):
 	if area.is_in_group("BULLET"):
 		parryable_bullets.erase(area)
@@ -177,4 +194,9 @@ func _on_ParryArea_area_exited(area):
 
 func _on_ParryCooldownTimer_timeout():
 	can_parry = true
-	
+
+func _on_DashCooldownTimer_timeout():
+	can_dash = true
+
+func _on_DashDurationTimer_timeout():
+	is_dashing = false

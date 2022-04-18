@@ -25,8 +25,8 @@ bullet_scene = ExtResource( 2 )
 min_rotation = 35
 max_rotation = 55
 number_of_bullets = 3
-spawn_rate = 1.0
-bullet_speed = 100.0
+spawn_rate = 0.8
+bullet_speed = 300.0
 changeColorAfterShot = true
 rotationChangeAfterTick = 90.0
 

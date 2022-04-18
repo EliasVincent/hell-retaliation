@@ -18,8 +18,7 @@ func die():
 	# EnemyManager has to be direct Child of Enemy Node
 	# 
 	get_parent().can_fire = false
-	get_parent().hide()
-	get_parent().set_process(false)
+	get_parent().queue_free()
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("PARRYBULLET"):

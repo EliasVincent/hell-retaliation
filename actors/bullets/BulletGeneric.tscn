@@ -7,7 +7,7 @@
 radius = 32.0
 
 [node name="BulletGeneric" type="Area2D" groups=["BULLET"]]
-scale = Vector2( 0.25, 0.25 )
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
 velocity = Vector2( 3, 1 )
 use_velocity = true
@@ -23,9 +23,4 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( -1, 0 )
-scale = Vector2( 4.1, 4 )
-
 [connection signal="body_entered" from="." to="." method="_on_BulletGeneric_body_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

@@ -28,15 +28,15 @@ enum ColorState {
 onready var color_state
 
 func _ready():
-	print("I'm instanced!")
+	#print("I'm instanced!")
 	timer.start(time)
 	initTimer.start(initTime)
 	#TODO: set velocity and make it fly for a short while to have it actually around the player and not dead on him
 
 func init():
-	print("ParryBullet ColorState ", color_state)
+	#print("ParryBullet ColorState ", color_state)
 	if color_state == ColorState.B:
-		print("I SHOULD BE BLACK")
+		#print("I SHOULD BE BLACK")
 		sprite.hide()
 		bSprite.show()
 	else:
@@ -45,7 +45,7 @@ func init():
 		color_state = ColorState.A
 
 
-func _process(delta):
+func _physics_process(delta):
 	# either use velocity or rotation
 	if not flyToEnemyNow:
 		if use_velocity:

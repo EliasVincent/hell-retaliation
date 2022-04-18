@@ -45,10 +45,6 @@ func _physics_process(delta):
 	velocity = velocity.normalized();
 	velocity = move_and_slide(velocity * speed);
 	
-	# Clamp to screen borders, make sure we're in the window
-	if clamp_to_window_borders:
-		global_position = Vector2(clamp(global_position.x, 0, screen_borders.x), clamp(global_position.y, 0, screen_borders.y));
-	
 	# ColorState
 	if Input.is_action_just_pressed("change_color"):
 		if color_state == ColorState.B:
@@ -63,13 +59,17 @@ func _physics_process(delta):
 	# Parry
 	if Input.is_action_just_pressed("parry"):
 		parry(parryable_bullets);
-	
+
+func _process(delta):
+	# Clamp to screen borders, make sure we're in the window
+	if clamp_to_window_borders:
+		global_position = Vector2(clamp(global_position.x, 0, screen_borders.x), clamp(global_position.y, 0, screen_borders.y));
 	
 # Andere Scripts (wie Bullets) können diese Methode hier aufrufen
 # Player ist so lange unverwundbar wie die Animation dauert
 # Zum ändern des Cooldowns die Länge von HIT im AnimationPlayer ändern
 func take_damage(damage: float):
-	print('damage', can_take_damage)
+	#print('damage', can_take_damage)
 	if (can_take_damage):
 		can_take_damage = false;
 		GlobalVariables.playerHP -= damage

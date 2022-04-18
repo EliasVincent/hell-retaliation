@@ -17,6 +17,10 @@ var rotation_change = 0.0
 export (String) var bulletColor
 var spawner
 
+# how many pixels far is the bullet allowed to be
+# off-screen until it disappears?
+export var visibilityOffset = 20
+
 enum ColorState {
 	B,
 	A
@@ -39,6 +43,13 @@ func init():
 		color_state = ColorState.A
 
 func _process(delta):
+	# own VisibilityNotifier cause the real one is kinda buggy lol
+	var insideWindowBorder = global_position.x > 0 - visibilityOffset and global_position.x < Game.size.x + visibilityOffset and global_position.y > 0 - visibilityOffset and global_position.y < Game.size.y + visibilityOffset
+	if not insideWindowBorder:
+		queue_free()
+		
+
+func _physics_process(delta):
 	# either use velocity or rotation
 	if use_velocity:
 		position += velocity.normalized() * speed * delta
@@ -47,10 +58,6 @@ func _process(delta):
 		position += Vector2(cos(rotation), -sin(rotation)) * speed * delta
 	# super fancy spiral effect
 	rotation_degrees += rotation_change * delta
-	
-
-func _on_VisibilityNotifier2D_screen_exited():
-	queue_free()
 
 func get_spawner():
 	return spawner

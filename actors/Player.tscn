@@ -125,10 +125,6 @@ shape = SubResource( 7 )
 
 [node name="ParryCooldownTimer" type="Timer" parent="."]
 
-[node name="DashCooldownTimer" type="Timer" parent="."]
-
-[node name="DashDurationTimer" type="Timer" parent="."]
-
 [node name="Label" type="Label" parent="."]
 margin_left = -24.0
 margin_top = 48.0
@@ -139,5 +135,3 @@ margin_bottom = 62.0
 [connection signal="area_entered" from="ParryArea" to="." method="_on_ParryArea_area_entered"]
 [connection signal="area_exited" from="ParryArea" to="." method="_on_ParryArea_area_exited"]
 [connection signal="timeout" from="ParryCooldownTimer" to="." method="_on_ParryCooldownTimer_timeout"]
-[connection signal="timeout" from="DashCooldownTimer" to="." method="_on_DashCooldownTimer_timeout"]
-[connection signal="timeout" from="DashDurationTimer" to="." method="_on_DashDurationTimer_timeout"]

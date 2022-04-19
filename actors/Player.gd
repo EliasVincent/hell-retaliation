@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (float) var parry_cooldown = 0.8
+export (float) var parry_cooldown = 0.4
 export (int) var speed = 200;
 export (int) var start_hp : int = 100;
 onready var hp = start_hp;
@@ -41,14 +41,10 @@ export (bool) var use_velocity = false; # If false use rotation, If true use vel
 export (float) var bulletRotationChange = 0
 var bulletColor = "A";
 
-# dash
-onready var dash_cooldown_timer = $DashCooldownTimer
-onready var dash_duration_timer = $DashDurationTimer
-var can_dash = true
-var is_dashing = false
-export (float) var dash_cooldown = 0.2
-export (float) var dash_duration = 0.09
-export (float) var dash_speed = 1400
+# crouch / slow mode
+var is_crouching = false
+export (float) var crouch_speed = speed / 2
+
 
 func _physics_process(delta):
 	# Input
@@ -56,9 +52,9 @@ func _physics_process(delta):
 	velocity.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	velocity.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up");
 	velocity = velocity.normalized();
-	if is_dashing :
-		velocity = move_and_slide(velocity * dash_speed)
-	else :
+	if is_crouching:
+		velocity = move_and_slide(velocity * crouch_speed);
+	else:
 		velocity = move_and_slide(velocity * speed);
 	
 	# ColorState
@@ -76,7 +72,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("parry"):
 		if can_parry:
 			can_parry = false
-			parry_cooldown_timer.start();
+			parry_cooldown_timer.start(parry_cooldown);
 			parry(parryable_bullets);
 	
 	if can_parry:
@@ -84,13 +80,11 @@ func _physics_process(delta):
 	if not can_parry:
 		debug_label.text = str("COOLDOWN")
 	
-	# Dash
-	if Input.is_action_just_pressed("dash"):
-		if can_dash:
-			can_dash = false
-			is_dashing = true
-			dash_cooldown_timer.start(dash_cooldown);
-			dash_duration_timer.start(dash_duration);
+	# Crouch / Slow mode
+	if Input.is_action_pressed("crouch"):
+		is_crouching = true
+	else:
+		is_crouching = false
 
 func _process(delta):
 	# Clamp to screen borders, make sure we're in the window
@@ -194,9 +188,3 @@ func _on_ParryArea_area_exited(area):
 
 func _on_ParryCooldownTimer_timeout():
 	can_parry = true
-
-func _on_DashCooldownTimer_timeout():
-	can_dash = true
-
-func _on_DashDurationTimer_timeout():
-	is_dashing = false

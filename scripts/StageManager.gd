@@ -1,6 +1,8 @@
 extends Node2D
 
-# get all stages
+# StateManager will load all Stages from prefab/stages/ and will load them in order.
+# To progress to the next stage, the Player either has to kill all enemies in the "ENEMIES" group or wait for the timer to expire.
+# to add a level to the game, create a new match for levelToPlay 2. It will load all stages from the prefab/stages/L2 folder
 export (int) var levelToPlay = 1
 
 var stageList : Array
@@ -13,8 +15,6 @@ var totalStages : int
 
 onready var stageTimer = $StageTimer
 export (float) var timePerStage = 20.0
-
-onready var s1_1 : PackedScene
 
 func list_files_in_directory(path):
 	var files = []
@@ -34,25 +34,26 @@ func list_files_in_directory(path):
 	return files
 
 func _ready():
-	
+	var levelFolder : String
 	
 	currStageCount = 0
 	match levelToPlay:
 		# TODO: Refactor on multiple levels
 		1:
-			var stageFilesList = list_files_in_directory("res://prefab/stages/L1")
-			var stageListSrings: Array
-			
-			for stage in stageFilesList:
-				var pathString: String = str("res://prefab/stages/L1" , "/" , stage) 
-				print(pathString)
-				var instance = load(pathString)
-				stageList.append(instance)
-				# after it's done it would spam nulls, no idea why
-				if !stage == null:
-					break
-			totalStages = stageList.size()
+			levelFolder = "L1"
+
+	var levelFolderPath : String = str("res://prefab/stages/", levelFolder)
+	var stageFilesList = list_files_in_directory(levelFolderPath)
 	
+	for stage in stageFilesList:
+		var pathString: String = str(levelFolderPath , "/" , stage) 
+		print(pathString)
+		var instance = load(pathString)
+		stageList.append(instance)
+		# after it's done it would spam nulls, no idea why
+		if !stage == null:
+			break
+	totalStages = stageList.size()
 	
 	# compared to array size soo it do be like that
 	totalStages -= 1

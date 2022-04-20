@@ -1,6 +1,14 @@
 extends Node2D
 
-# PackedScene = Szenen im Editor einfach reindroppen
+# All Enemies need:
+# - Main Node attached to this Script and assigned to Group "ENEMY" 
+# in order to make the StageManager recognize it
+# - Sprite
+# - Timer
+# - Area2D's area_entered Connected to EnemyManager
+# - EnemyManager
+# - AnimationPlayer with a "DIE" Animation
+
 export (PackedScene) var bullet_scene: PackedScene;
 export var min_rotation = 0;
 export var max_rotation = 360;
@@ -10,7 +18,7 @@ export (bool) var is_random = false;
 export (float) var spawn_rate = 0.4;
 export (float) var bullet_speed = 5;
 export (Vector2) var bullet_velocity = Vector2(1,0);
-export (bool) var use_velocity = false; # If false use rotation, If true use velocity
+export (bool) var use_velocity = false; # If false use rotation
 
 export (bool) var changeColorAfterShot = false;
 export (String) var bulletColor = "A";

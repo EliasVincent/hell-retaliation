@@ -150,5 +150,13 @@ grow_horizontal = 0
 custom_colors/font_color = Color( 0.886275, 0.87451, 0.87451, 1 )
 text = "Developer 3"
 
+[node name="Button" type="Button" parent="."]
+margin_left = 868.0
+margin_top = 337.0
+margin_right = 988.0
+margin_bottom = 397.0
+text = "LEVEL 1"
+
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

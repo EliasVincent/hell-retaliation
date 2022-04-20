@@ -34,3 +34,8 @@ func _on_ExitButton_pressed() -> void:
 		yield(transitions.anim, "animation_finished")
 		yield(get_tree().create_timer(0.3), "timeout")
 	get_tree().quit()
+
+
+func _on_Button_pressed():
+	var params = { show_progress_bar = true }
+	Game.change_scene("res://scenes/Level1.tscn", params)

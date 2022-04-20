@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/sprites/clockSpawner/clock4.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/clockSpawner/clock3.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/clockSpawner/clock2.png" type="Texture" id=6]
-[ext_resource path="res://actors/EnemyManager.gd" type="Script" id=7]
+[ext_resource path="res://actors/EnemyManager.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -32,7 +32,7 @@ rotationChangeAfterTick = 90.0
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 1
+frame = 2
 speed_scale = 0.2
 playing = true
 
@@ -43,8 +43,9 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
 
-[node name="EnemyManager" type="Node2D" parent="."]
-script = ExtResource( 7 )
+[node name="EnemyManager" parent="." instance=ExtResource( 7 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="EnemyManager" method="_on_Area2D_area_entered"]

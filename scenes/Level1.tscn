@@ -4,30 +4,10 @@
 [ext_resource path="res://prefab/Border.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/StageManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/gameplay/pause-layer/pause-layer.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/KaleidoscopeWithParams.tes.tres" type="Material" id=5]
-[ext_resource path="res://assets/StarsWithParams.tres" type="Material" id=6]
+[ext_resource path="res://scenes/DebugInfo.tscn" type="PackedScene" id=5]
+[ext_resource path="res://prefab/Camera2DWithScreenShake.tscn" type="PackedScene" id=7]
 
 [node name="Level1" type="Node2D"]
-
-[node name="Control" type="Control" parent="."]
-margin_right = 1280.0
-margin_bottom = 720.0
-
-[node name="ColorRect" type="ColorRect" parent="Control"]
-visible = false
-material = ExtResource( 6 )
-margin_right = 1280.0
-margin_bottom = 720.0
-color = Color( 0, 0, 0, 1 )
-
-[node name="ColorRect2" type="ColorRect" parent="Control"]
-visible = false
-material = ExtResource( 5 )
-margin_right = 1280.0
-margin_bottom = 720.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-size_flags_stretch_ratio = 2.05
 
 [node name="Border4" parent="." instance=ExtResource( 2 )]
 modulate = Color( 1, 1, 1, 0.121569 )
@@ -66,3 +46,9 @@ position = Vector2( 622, 552 )
 [node name="StageManager" parent="." instance=ExtResource( 3 )]
 
 [node name="PauseLayer" parent="." instance=ExtResource( 4 )]
+
+[node name="Camera2D" parent="." instance=ExtResource( 7 )]
+
+[node name="DebugInfo" parent="." instance=ExtResource( 5 )]
+margin_right = 1280.0
+margin_bottom = 720.0

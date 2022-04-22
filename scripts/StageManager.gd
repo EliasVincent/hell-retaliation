@@ -93,8 +93,9 @@ func _on_StageTimer_timeout():
 	var remainingEnemies = get_tree().get_nodes_in_group("ENEMY")
 	for enemy in remainingEnemies:
 		#TODO: handle die()
-		
+		# remove from ENEMY group -> 0 in group -> next stage
+		enemy.remove_from_group("ENEMY")
 		# get animationPlayer of node
-		var animPlayer = enemy.get_node("animationPlayer")
+		var animPlayer = enemy.get_node("AnimationPlayer")
 		animPlayer.play("DIE")
 	# switch to next scene while keeping old enemies for ~5 seconds

@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+# requires Node in group CAMERA to work
 export (float) var parry_cooldown = 0.4
 export (int) var speed = 200;
 export (int) var start_hp : int = 100;
@@ -45,6 +45,8 @@ var bulletColor = "A";
 var is_crouching = false
 export (float) var crouch_speed = speed / 2
 
+onready var camera : Camera2D = get_tree().get_nodes_in_group("CAMERA")[0]
+onready var screenShake : Node = camera.get_node("ScreenShake")
 
 func _physics_process(delta):
 	# Input
@@ -99,6 +101,7 @@ func take_damage(damage: float):
 	if (can_take_damage):
 		can_take_damage = false;
 		GlobalVariables.playerHP -= damage
+		screenShake.start(0.1, 15, 4, 0)
 		if color_state == ColorState.B:
 			animation_player.play("HIT_B");
 		else:

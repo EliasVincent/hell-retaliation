@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/playerNEW.png" type="Texture" id=2]
@@ -72,6 +72,51 @@ tracks/0/keys = {
 "values": [ Color( 1, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 0.278431 ), Color( 0, 0, 0, 1 ) ]
 }
 
+[sub_resource type="Animation" id=8]
+resource_name = "PLAYER_DEATH"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false ],
+"method": "set_physics_process"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false ],
+"method": "set_process"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "change_to_game_over"
+} ]
+}
+
 [sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
@@ -112,6 +157,7 @@ anims/A = SubResource( 5 )
 anims/B = SubResource( 4 )
 anims/HIT_A = SubResource( 2 )
 anims/HIT_B = SubResource( 6 )
+anims/PLAYER_DEATH = SubResource( 8 )
 anims/RESET = SubResource( 3 )
 
 [node name="ParryArea" type="Area2D" parent="."]

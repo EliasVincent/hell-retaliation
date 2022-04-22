@@ -44,14 +44,14 @@ func _ready():
 
 	var levelFolderPath : String = str("res://prefab/stages/", levelFolder)
 	var stageFilesList = list_files_in_directory(levelFolderPath)
-	
+	print(stageFilesList)
 	for stage in stageFilesList:
 		var pathString: String = str(levelFolderPath , "/" , stage) 
 		print(pathString)
 		var instance = load(pathString)
 		stageList.append(instance)
 		# after it's done it would spam nulls, no idea why
-		if !stage == null:
+		if stage == null:
 			break
 	totalStages = stageList.size()
 	
@@ -79,6 +79,7 @@ func win():
 	print("YOU WIN")
 func instanceNextScene():
 	currStage = stageList[currStageCount]
+#	currStage = stageList[1]
 	var currStageInstance = currStage.instance()
 	get_parent().add_child_below_node(self, currStageInstance);
 	
@@ -88,4 +89,12 @@ func instanceNextScene():
 
 func _on_StageTimer_timeout():
 	pass
+	# get all remaining ENEMY 
+	var remainingEnemies = get_tree().get_nodes_in_group("ENEMY")
+	for enemy in remainingEnemies:
+		#TODO: handle die()
+		
+		# get animationPlayer of node
+		var animPlayer = enemy.get_node("animationPlayer")
+		animPlayer.play("DIE")
 	# switch to next scene while keeping old enemies for ~5 seconds

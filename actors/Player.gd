@@ -155,8 +155,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "HIT_B" or anim_name == "HIT_A":
 		can_take_damage = true
 		if GlobalVariables.playerHP == 0:
-			#Game.change_scene("res://ui/GameOver.tscn")
-			print("YOU DIED")
+			animation_player.play("PLAYER_DEATH");
 
 func get_color_state():
 	return color_state;
@@ -188,3 +187,7 @@ func _on_ParryArea_area_exited(area):
 
 func _on_ParryCooldownTimer_timeout():
 	can_parry = true
+
+func change_to_game_over():
+	Game.change_scene("res://scenes/GameOver.tscn")
+	

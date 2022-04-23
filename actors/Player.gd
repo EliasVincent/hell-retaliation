@@ -9,6 +9,14 @@ onready var animation_player = $AnimationPlayer
 onready var player_sprite = $Sprite
 onready var parry_area = $ParryArea
 onready var parry_cooldown_timer = $ParryCooldownTimer
+
+onready var player_hit_sound = $Sfx/PlayerHit
+onready var player_death_sound = $Sfx/PlayerDeath
+onready var parry_zero_sound = $Sfx/ParryZero
+onready var parry_success_sound = $Sfx/ParrySuccess
+onready var parry_gone_sound = $Sfx/ParryGone
+onready var bullet_fly_sound = $Sfx/BulletFly
+
 onready var debug_label = $Label
 onready var parry_bullet : PackedScene = preload("res://actors/bullets/ParryBullet.tscn")
 var can_parry = true
@@ -120,6 +128,13 @@ func parry(bullets: Array):
 	for bullet in bullets:
 		# kann auch ne Animation sein wie sie verschwinden
 		bullet.queue_free()
+	
+	if bullets.size() == 0:
+		parry_zero_sound.play()
+	
+	if bullets.size() > 0:
+		parry_success_sound.play()
+	
 func distributed_rotations(bulletArray):
 	parry_rotations = [];
 	for i in range(0, bulletArray.size()):

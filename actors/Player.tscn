@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/playerNEW.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/white_square.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/emptywhitecircle.png" type="Texture" id=4]
+[ext_resource path="res://assets/sfx/empty_parry.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sfx/successful_parry.wav" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -176,6 +178,22 @@ margin_left = -24.0
 margin_top = 48.0
 margin_right = 16.0
 margin_bottom = 62.0
+
+[node name="Sfx" type="Node2D" parent="."]
+
+[node name="PlayerHit" type="AudioStreamPlayer" parent="Sfx"]
+
+[node name="ParryZero" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 5 )
+
+[node name="ParrySuccess" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 6 )
+
+[node name="ParryGone" type="AudioStreamPlayer" parent="Sfx"]
+
+[node name="PlayerDeath" type="AudioStreamPlayer" parent="Sfx"]
+
+[node name="BulletFly" type="AudioStreamPlayer" parent="Sfx"]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="ParryArea" to="." method="_on_ParryArea_area_entered"]

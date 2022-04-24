@@ -8,6 +8,7 @@ var canTakeDamage = true
 var willDie = true
 
 func _ready():
+	#nothing
 	pass
 
 func _physics_process(delta):

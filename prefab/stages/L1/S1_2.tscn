@@ -283,7 +283,7 @@ spawn_rate = 0.4
 can_fire = false
 
 [node name="Sprite" parent="ClockSpawner" index="0"]
-frame = 2
+frame = 3
 
 [node name="ClockSpawner2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 848, -254 )

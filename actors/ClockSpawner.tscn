@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://actors/BulletSpawner.gd" type="Script" id=1]
 [ext_resource path="res://actors/bullets/BulletGeneric.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://actors/EnemyManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://prefab/Explosion.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/actorsDIE.tres" type="Animation" id=9]
+[ext_resource path="res://assets/sprites/bullet64.png" type="Texture" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -20,6 +21,23 @@ animations = [ {
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 29.0172
+
+[sub_resource type="Animation" id=5]
+resource_name = "EMIT"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("EmitDot:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.854902, 0.172549, 0.219608, 0 ), Color( 2.85, 0.17, 0.22, 1 ), Color( 2.18497, 0.17085, 0.219869, 0.666667 ), Color( 0.854902, 0.172549, 0.219608, 0 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -47,6 +65,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("EmitDot:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.854902, 0.172549, 0.219608, 0 ) ]
+}
 
 [node name="ClockSpawner" type="Node2D" groups=["ENEMY"]]
 script = ExtResource( 1 )
@@ -61,7 +91,7 @@ rotationChangeAfterTick = 90.0
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 3
+frame = 1
 speed_scale = 0.2
 playing = true
 
@@ -77,10 +107,16 @@ hp = 15.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DIE = ExtResource( 9 )
+anims/EMIT = SubResource( 5 )
 anims/RESET = SubResource( 4 )
 
 [node name="Explosion" parent="." instance=ExtResource( 8 )]
 emitting = false
+
+[node name="EmitDot" type="Sprite" parent="."]
+modulate = Color( 0.854902, 0.172549, 0.219608, 0 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 10 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="EnemyManager" method="_on_Area2D_area_entered"]

@@ -13,7 +13,7 @@ velocity = Vector2( 3, 1 )
 use_velocity = true
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.101961, 1, 0.101961, 1 )
+modulate = Color( 0.1, 1.2, 0.1, 1 )
 texture = ExtResource( 2 )
 
 [node name="BlackSprite" type="Sprite" parent="."]

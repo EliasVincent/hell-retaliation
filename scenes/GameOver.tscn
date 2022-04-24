@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/fonts/open-sans/open-sans-bold.ttf" type="DynamicFontData" id=1]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -92,7 +94,7 @@ void fragment()
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=4]
 shader = SubResource( 3 )
 shader_param/iterations = 20
 shader_param/formuparam = 1.0
@@ -100,7 +102,7 @@ shader_param/volsteps = 20
 shader_param/stepsize = 0.1
 shader_param/zoom = 0.8
 shader_param/tile = 0.5
-shader_param/speed = 1.001
+shader_param/speed = 0.001
 shader_param/brightness = 0.002
 shader_param/darkmatter = 0.1
 shader_param/distfading = 0.65
@@ -108,12 +110,27 @@ shader_param/saturation = 0.75
 shader_param/iResolution = Vector2( 192, 192 )
 shader_param/iMouse = Vector2( 0, 0 )
 
+[sub_resource type="DynamicFont" id=1]
+size = 44
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 1 )
+
 [node name="GameOver" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource( 2 )
+material = SubResource( 4 )
 margin_right = 1280.0
 margin_bottom = 720.0
 color = Color( 0, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 496.0
+margin_top = 112.0
+margin_right = 753.0
+margin_bottom = 173.0
+theme = SubResource( 5 )
+text = "GAME OVER"

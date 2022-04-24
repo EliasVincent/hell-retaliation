@@ -14,7 +14,7 @@ var willSwitch : bool = false
 var totalStages : int
 
 onready var stageTimer = $StageTimer
-export (float) var timePerStage = 20.0
+export (float) var timePerStage = 60.0
 
 func list_files_in_directory(path):
 	var files = []

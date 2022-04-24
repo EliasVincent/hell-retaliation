@@ -36,6 +36,8 @@ export (bool) var log_to_console;
 
 export var can_fire = true
 
+onready var animation_player = $AnimationPlayer
+
 func _ready():
 	$Timer.wait_time = spawn_rate
 	$Timer.start()
@@ -72,6 +74,8 @@ func spawn_bullets():
 		random_rotations();
 	else:
 		distributed_rotations();
+	
+	animation_player.play("EMIT")
 	
 	var spawned_bullets = [];
 	for i in range(0, number_of_bullets):

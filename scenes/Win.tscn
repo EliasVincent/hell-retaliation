@@ -1,11 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/fonts/open-sans/open-sans-bold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://scenes/GameOver.gd" type="Script" id=2]
-[ext_resource path="res://assets/ui-theme.tres" type="Theme" id=3]
-[ext_resource path="res://assets/sfx/player-death.wav" type="AudioStream" id=4]
 
-[sub_resource type="Shader" id=6]
+[sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -97,10 +94,10 @@ void fragment()
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 6 )
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
 shader_param/iterations = 20
-shader_param/formuparam = 1.0
+shader_param/formuparam = 1.004
 shader_param/volsteps = 20
 shader_param/stepsize = 0.1
 shader_param/zoom = 0.8
@@ -113,21 +110,20 @@ shader_param/saturation = 0.75
 shader_param/iResolution = Vector2( 192, 192 )
 shader_param/iMouse = Vector2( 0, 0 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=1]
 size = 44
 font_data = ExtResource( 1 )
 
-[sub_resource type="Theme" id=5]
-default_font = SubResource( 7 )
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 1 )
 
-[node name="GameOver" type="Control"]
+[node name="Win" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 3 )
-script = ExtResource( 2 )
+rect_pivot_offset = Vector2( -304, -76 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource( 4 )
+material = SubResource( 3 )
 margin_right = 1280.0
 margin_bottom = 720.0
 color = Color( 0, 0, 0, 1 )
@@ -137,8 +133,9 @@ margin_left = 496.0
 margin_top = 112.0
 margin_right = 753.0
 margin_bottom = 173.0
-theme = SubResource( 5 )
-text = "GAME OVER"
+theme = SubResource( 4 )
+text = "VICTORY"
+align = 1
 
 [node name="Restart" type="Button" parent="."]
 margin_left = 528.0
@@ -159,10 +156,3 @@ rect_min_size = Vector2( 200, 70 )
 focus_neighbour_bottom = NodePath("../ExitButton")
 focus_next = NodePath("../ExitButton")
 text = "MENU"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-autoplay = true
-
-[connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
-[connection signal="pressed" from="Menu" to="." method="_on_Menu_pressed"]

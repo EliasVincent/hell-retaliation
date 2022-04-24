@@ -76,7 +76,7 @@ func _process(delta):
 			willSwitch = false
 		
 func win():
-	print("YOU WIN")
+	Game.change_scene("res://scenes/Win.tscn")
 func instanceNextScene():
 	currStage = stageList[currStageCount]
 #	currStage = stageList[1]

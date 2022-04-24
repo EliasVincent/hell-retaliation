@@ -16,6 +16,7 @@ onready var parry_zero_sound = $Sfx/ParryZero
 onready var parry_success_sound = $Sfx/ParrySuccess
 onready var parry_gone_sound = $Sfx/ParryGone
 onready var bullet_fly_sound = $Sfx/BulletFly
+onready var color_switch_sound = $Sfx/ColorSwitch
 
 onready var debug_label = $Label
 onready var parry_bullet : PackedScene = preload("res://actors/bullets/ParryBullet.tscn")
@@ -69,6 +70,7 @@ func _physics_process(delta):
 	
 	# ColorState
 	if Input.is_action_just_pressed("change_color"):
+		color_switch_sound.play()
 		if color_state == ColorState.B:
 			if can_take_damage:
 				color_state = ColorState.A;
@@ -109,6 +111,7 @@ func take_damage(damage: float):
 	if (can_take_damage):
 		can_take_damage = false;
 		GlobalVariables.playerHP -= damage
+		player_hit_sound.play()
 		screenShake.start(0.1, 15, 4, 0)
 		if color_state == ColorState.B:
 			animation_player.play("HIT_B");

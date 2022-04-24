@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/color_switch.wav-e1810d34dd937ac327d12158c0f3bfb2.sample"
+
+[deps]
+
+source_file="res://assets/sfx/color_switch.wav"
+dest_files=[ "res://.import/color_switch.wav-e1810d34dd937ac327d12158c0f3bfb2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

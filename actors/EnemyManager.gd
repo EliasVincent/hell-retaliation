@@ -1,6 +1,6 @@
 extends Node2D
 
-export (float) var hp = 3
+export (float) var hp = 10
 var canTakeDamage = true
 
 func _ready():
@@ -16,7 +16,7 @@ func take_damage(damage: float):
 
 func die():
 	# EnemyManager has to be direct Child of Enemy Node
-	# 
+	GlobalSounds.enemyDeathSound.play()
 	get_parent().can_fire = false
 	get_parent().queue_free()
 

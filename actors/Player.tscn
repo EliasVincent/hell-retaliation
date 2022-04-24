@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/playerNEW.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://assets/sprites/emptywhitecircle.png" type="Texture" id=4]
 [ext_resource path="res://assets/sfx/empty_parry.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/sfx/successful_parry.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sfx/player_hit.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sfx/color_switch.wav" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -23,7 +25,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 0.294118, 0, 0.572549, 1 ), Color( 0.101961, 1, 0.101961, 1 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -39,7 +41,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+"values": [ Color( 0.101961, 1, 0.101961, 1 ), Color( 0.294118, 0, 0.572549, 1 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -55,7 +57,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.866736, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 0, 0, 1 ), Color( 0.101961, 1, 0.101961, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 0.101961, 1, 0.101961, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 0.101961, 1, 0.101961, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 0.278431 ), Color( 0.101961, 1, 0.101961, 1 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -71,7 +73,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.866736, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 0.278431 ), Color( 0, 0, 0, 1 ) ]
+"values": [ Color( 1, 0, 0, 1 ), Color( 0.294118, 0, 0.572549, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 0.294118, 0, 0.572549, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 0.294118, 0, 0.572549, 1 ), Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 0.278431 ), Color( 0.294118, 0, 0.572549, 1 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -147,7 +149,7 @@ texture = ExtResource( 2 )
 
 [node name="Sprite2" type="Sprite" parent="."]
 visible = false
-modulate = Color( 1, 0, 0, 1 )
+modulate = Color( 0.294118, 0, 0.572549, 1 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )
 
@@ -182,6 +184,7 @@ margin_bottom = 62.0
 [node name="Sfx" type="Node2D" parent="."]
 
 [node name="PlayerHit" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 7 )
 
 [node name="ParryZero" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 5 )
@@ -194,6 +197,10 @@ stream = ExtResource( 6 )
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="Sfx"]
 
 [node name="BulletFly" type="AudioStreamPlayer" parent="Sfx"]
+
+[node name="ColorSwitch" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 8 )
+mix_target = 2
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="ParryArea" to="." method="_on_ParryArea_area_entered"]

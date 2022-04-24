@@ -49,6 +49,7 @@ rotationChangeAfterTick = 90.0
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
+frame = 2
 speed_scale = 0.2
 playing = true
 

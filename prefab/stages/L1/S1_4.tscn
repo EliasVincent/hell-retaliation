@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://actors/BombSpawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/ClockSpawner.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "4"
+length = 60.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ClockSpawner:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 12.7, 27.7, 59.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 310, 288 ), Vector2( 980, 140 ), Vector2( 818, 393 ), Vector2( 310, 288 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ClockSpawner:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 310, 288 ) ]
+}
+
+[node name="S1_4" type="Node2D"]
+
+[node name="BombSpawner" parent="." instance=ExtResource( 1 )]
+position = Vector2( 640, 31 )
+number_of_bullets = 72
+spawn_rate = 2.0
+bullet_speed = 350.0
+changeColorAfterShot = true
+
+[node name="BombSpawner2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 640, 689 )
+number_of_bullets = 72
+spawn_rate = 2.0
+bullet_speed = 350.0
+changeColorAfterShot = true
+
+[node name="ClockSpawner" parent="." instance=ExtResource( 2 )]
+position = Vector2( 310, 288 )
+min_rotation = 0
+max_rotation = 360
+number_of_bullets = 1
+spawn_rate = 0.05
+bullet_speed = 500.0
+changeColorAfterShot = false
+bulletColor = "B"
+rotationChangeAfterTick = 5.0
+
+[node name="ClockSpawner2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 960, 300 )
+min_rotation = 0
+max_rotation = 360
+number_of_bullets = 1
+is_random = true
+spawn_rate = 0.08
+bullet_speed = 100.0
+bulletColor = "B"
+rotationChangeAfterTick = 5.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "4"
+anims/4 = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="ClockSpawner3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 169, 589 )
+
+[node name="ClockSpawner4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1075, 602 )

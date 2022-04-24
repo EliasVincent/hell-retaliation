@@ -75,16 +75,16 @@ void fragment()
     
 	v=mix(vec3(length(v)),v,saturation); //color adjust
     
-    vec4 C = vec4(v*.01,1.);
+    vec4 C = vec4(v*.01,0.9);
     
-//     	C.r = pow(C.r, 0.35); 
-// 	 	C.g = pow(C.g, 0.36); 
-// 	 	C.b = pow(C.b, 0.38); 
+     	C.r = pow(C.r, 0.35); 
+ 	 	C.g = pow(C.g, 0.36); 
+ 	 	C.b = pow(C.b, 0.38); 
  	
     vec4 L = C;   	
     
     COLOR.r = mix(L.r, SCurve(C.r), 0.7); 
-    COLOR.g = mix(L.g, SCurve(C.g), 1.0); 
+    COLOR.g = mix(L.g, SCurve(C.g), 0.9); 
     COLOR.b = mix(L.b, SCurve(C.b), 0.2);     	
 	
 }

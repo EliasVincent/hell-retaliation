@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/fonts/open-sans/open-sans-bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scenes/GameOver.gd" type="Script" id=2]
+[ext_resource path="res://assets/ui-theme.tres" type="Theme" id=3]
+[ext_resource path="res://assets/sfx/player-death.wav" type="AudioStream" id=4]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -120,6 +123,8 @@ default_font = SubResource( 1 )
 [node name="GameOver" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource( 4 )
@@ -134,3 +139,30 @@ margin_right = 753.0
 margin_bottom = 173.0
 theme = SubResource( 5 )
 text = "GAME OVER"
+
+[node name="Restart" type="Button" parent="."]
+margin_left = 528.0
+margin_top = 240.0
+margin_right = 728.0
+margin_bottom = 310.0
+rect_min_size = Vector2( 200, 70 )
+focus_neighbour_bottom = NodePath("../ExitButton")
+focus_next = NodePath("../ExitButton")
+text = "RESTART"
+
+[node name="Menu" type="Button" parent="."]
+margin_left = 528.0
+margin_top = 352.0
+margin_right = 728.0
+margin_bottom = 422.0
+rect_min_size = Vector2( 200, 70 )
+focus_neighbour_bottom = NodePath("../ExitButton")
+focus_next = NodePath("../ExitButton")
+text = "MENU"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Menu" to="." method="_on_Menu_pressed"]

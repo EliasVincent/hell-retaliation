@@ -93,8 +93,10 @@ func _on_StageTimer_timeout():
 	var remainingEnemies = get_tree().get_nodes_in_group("ENEMY")
 	for enemy in remainingEnemies:
 		#TODO: handle die()
-		# remove from ENEMY group -> 0 in group -> next stage
+		# remove from ENEMY group -> 0 in group -> next 
+		
 		enemy.remove_from_group("ENEMY")
+		enemy.queue_free()
 		# get animationPlayer of node
 		var animPlayer = enemy.get_node("AnimationPlayer")
 		animPlayer.play("DIE")

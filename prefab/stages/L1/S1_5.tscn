@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://actors/ClockSpawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/BombSpawner.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BombSpawner:bulletColor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "A" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BombSpawner:changeColorAfterShot")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "ohgod"
+length = 60.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("BombSpawner:bulletColor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1, 6.1, 10.1, 13.5, 19.9, 25.9, 29.4, 32.1, 34.6, 37.2, 40, 43.4, 45.3, 47.1, 49.6, 52.5, 55.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A", "B", "A" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BombSpawner:changeColorAfterShot")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 20.1, 23.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+
+[node name="S1_5" type="Node2D"]
+
+[node name="ClockSpawner" parent="." instance=ExtResource( 1 )]
+position = Vector2( 234, 396 )
+spawn_rate = 0.1
+
+[node name="ClockSpawner2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 224, 132 )
+spawn_rate = 0.1
+
+[node name="ClockSpawner3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 236, 602 )
+spawn_rate = 0.1
+
+[node name="ClockSpawner4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1123, 606 )
+spawn_rate = 0.1
+
+[node name="ClockSpawner5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1126, 396 )
+spawn_rate = 0.1
+
+[node name="ClockSpawner6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1123, 180 )
+spawn_rate = 0.1
+
+[node name="BombSpawner" parent="." instance=ExtResource( 2 )]
+position = Vector2( 660, 29 )
+number_of_bullets = 80
+bullet_speed = 800.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "ohgod"
+anims/RESET = SubResource( 1 )
+anims/ohgod = SubResource( 2 )

@@ -179,7 +179,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "HIT_B" or anim_name == "HIT_A":
 		can_take_damage = true
 		if GlobalVariables.playerHP == 0:
-			animation_player.play("PLAYER_DEATH");
+			Game.change_scene("res://scenes/GameOver.tscn")
 
 func get_color_state():
 	return color_state;

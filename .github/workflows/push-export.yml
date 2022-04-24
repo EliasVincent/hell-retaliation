@@ -35,6 +35,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip build/windows
       - name: Deploy to itch.io
+        if: ${{ env.ITCH_IO==true }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -67,6 +68,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip build/linux
       - name: Deploy to itch.io
+        if: ${{ env.ITCH_IO==true }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -109,6 +111,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip build/web
       - name: Deploy to itch.io
+        if: ${{ env.ITCH_IO==true }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -141,6 +144,7 @@ jobs:
       - name: Zip Folder
         run: zip -r itch.zip build/mac
       - name: Deploy to itch.io
+        if: ${{ env.ITCH_IO==true }}
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}

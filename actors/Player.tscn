@@ -8,7 +8,6 @@
 [ext_resource path="res://assets/sfx/successful_parry.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/sfx/player_hit.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/sfx/color_switch.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/sfx/player_shoot.wav" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -116,7 +115,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.9 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -141,6 +140,8 @@ tracks/0/keys = {
 
 [sub_resource type="CircleShape2D" id=7]
 radius = 40.0
+
+[sub_resource type="AudioStreamSample" id=9]
 
 [node name="Player" type="KinematicBody2D" groups=["PLAYER"]]
 script = ExtResource( 1 )
@@ -192,16 +193,18 @@ stream = ExtResource( 7 )
 
 [node name="ParryZero" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 5 )
+bus = "player"
 
 [node name="ParrySuccess" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 6 )
+bus = "player"
 
 [node name="ParryGone" type="AudioStreamPlayer" parent="Sfx"]
 
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="Sfx"]
 
 [node name="BulletFly" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource( 9 )
+stream = SubResource( 9 )
 bus = "player"
 
 [node name="ColorSwitch" type="AudioStreamPlayer" parent="Sfx"]

@@ -6,4 +6,4 @@ func _ready():
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	pass # Replace with function body.
+	$AnimationPlayer.play("S1_3-2")

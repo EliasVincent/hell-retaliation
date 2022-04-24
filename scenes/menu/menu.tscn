@@ -167,6 +167,7 @@ custom_colors/font_color = Color( 0.886275, 0.87451, 0.87451, 1 )
 text = "@protokrok"
 
 [node name="Button" type="Button" parent="."]
+visible = false
 margin_left = 868.0
 margin_top = 337.0
 margin_right = 988.0

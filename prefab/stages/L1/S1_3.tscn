@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://actors/BombSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/ClockSpawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://prefab/stages/L1/S1_3.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -342,6 +343,7 @@ tracks/0/keys = {
 }
 
 [node name="S1_3" type="Node2D"]
+script = ExtResource( 3 )
 
 [node name="BombSpawner" parent="." instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0 )
@@ -395,5 +397,7 @@ autoplay = "S1_3-1"
 anims/RESET = SubResource( 1 )
 anims/S1_3-1 = SubResource( 2 )
 anims/S1_3-2 = SubResource( 3 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="BombSpawner"]

@@ -282,6 +282,9 @@ number_of_bullets = 6
 spawn_rate = 0.4
 can_fire = false
 
+[node name="Sprite" parent="ClockSpawner" index="0"]
+frame = 2
+
 [node name="ClockSpawner2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 848, -254 )
 min_rotation = 65
@@ -313,3 +316,5 @@ anims/S1_2 = SubResource( 4 )
 
 [connection signal="tree_exited" from="ClockSpawner" to="." method="_on_ClockSpawner_tree_exited"]
 [connection signal="tree_exited" from="ClockSpawner2" to="." method="_on_ClockSpawner2_tree_exited"]
+
+[editable path="ClockSpawner"]

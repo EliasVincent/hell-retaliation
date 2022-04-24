@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/BulletSpawner.gd" type="Script" id=1]
 [ext_resource path="res://actors/bullets/BulletGeneric.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/sprites/clockSpawner/clock3.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/clockSpawner/clock2.png" type="Texture" id=6]
 [ext_resource path="res://actors/EnemyManager.tscn" type="PackedScene" id=7]
+[ext_resource path="res://prefab/Explosion.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/actorsDIE.tres" type="Animation" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -19,21 +21,31 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=2]
 radius = 29.0172
 
-[sub_resource type="Animation" id=3]
-resource_name = "DIE"
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "queue_free"
-} ]
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Explosion:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
 }
 
 [node name="ClockSpawner" type="Node2D" groups=["ENEMY"]]
@@ -49,7 +61,7 @@ rotationChangeAfterTick = 90.0
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 2
+frame = 3
 speed_scale = 0.2
 playing = true
 
@@ -64,7 +76,11 @@ shape = SubResource( 2 )
 hp = 15.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DIE = SubResource( 3 )
+anims/DIE = ExtResource( 9 )
+anims/RESET = SubResource( 4 )
+
+[node name="Explosion" parent="." instance=ExtResource( 8 )]
+emitting = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="EnemyManager" method="_on_Area2D_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/playerNEW.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/sfx/successful_parry.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/sfx/player_hit.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/sfx/color_switch.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sfx/player_shoot.wav" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -15,6 +16,7 @@ extents = Vector2( 8, 8 )
 [sub_resource type="Animation" id=5]
 resource_name = "A"
 length = 0.2
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
 tracks/0/interp = 1
@@ -22,7 +24,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
+"times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0.294118, 0, 0.572549, 1 ), Color( 0.101961, 1, 0.101961, 1 ) ]
@@ -31,6 +33,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=4]
 resource_name = "B"
 length = 0.2
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
 tracks/0/interp = 1
@@ -38,7 +41,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
+"times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0.101961, 1, 0.101961, 1 ), Color( 0.294118, 0, 0.572549, 1 ) ]
@@ -197,12 +200,18 @@ stream = ExtResource( 6 )
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="Sfx"]
 
 [node name="BulletFly" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource( 9 )
+bus = "player"
 
 [node name="ColorSwitch" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 8 )
-mix_target = 2
+bus = "color"
+
+[node name="FlySoundDelay" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="ParryArea" to="." method="_on_ParryArea_area_entered"]
 [connection signal="area_exited" from="ParryArea" to="." method="_on_ParryArea_area_exited"]
 [connection signal="timeout" from="ParryCooldownTimer" to="." method="_on_ParryCooldownTimer_timeout"]
+[connection signal="timeout" from="FlySoundDelay" to="." method="_on_FlySoundDelay_timeout"]

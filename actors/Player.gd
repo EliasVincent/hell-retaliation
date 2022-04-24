@@ -9,6 +9,7 @@ onready var animation_player = $AnimationPlayer
 onready var player_sprite = $Sprite
 onready var parry_area = $ParryArea
 onready var parry_cooldown_timer = $ParryCooldownTimer
+onready var flySoundDelay = $FlySoundDelay
 
 onready var player_hit_sound = $Sfx/PlayerHit
 onready var player_death_sound = $Sfx/PlayerDeath
@@ -137,6 +138,8 @@ func parry(bullets: Array):
 	
 	if bullets.size() > 0:
 		parry_success_sound.play()
+		var soundDelayTime = 2.0
+		flySoundDelay.start(soundDelayTime)
 	
 func distributed_rotations(bulletArray):
 	parry_rotations = [];
@@ -212,3 +215,8 @@ func _on_ParryCooldownTimer_timeout():
 func change_to_game_over():
 	Game.change_scene("res://scenes/GameOver.tscn")
 	
+
+
+func _on_FlySoundDelay_timeout():
+	print("timeout")
+	bullet_fly_sound.play()

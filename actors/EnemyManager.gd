@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var enemyHit = $EnemyHit
+
 export (float) var hp = 10
 var canTakeDamage = true
 
@@ -12,6 +14,7 @@ func _process(delta):
 
 func take_damage(damage: float):
 	hp -= damage
+	enemyHit.play()
 	print("Enemy HP: ", hp)
 
 func die():

@@ -8,7 +8,7 @@
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=6]
 [ext_resource path="res://prefab/Camera2DWithScreenShake.tscn" type="PackedScene" id=7]
 [ext_resource path="res://prefab/GlowEnvironment.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/sprites/white360p.png" type="Texture" id=9]
+[ext_resource path="res://prefab/GameBorder.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/bgm/Skeletons.mp3" type="AudioStream" id=11]
 [ext_resource path="res://assets/GlowEnv.tres" type="Environment" id=13]
 
@@ -133,7 +133,6 @@ environment = ExtResource( 13 )
 material = SubResource( 2 )
 position = Vector2( 640, 360 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 640, 360 )
@@ -151,7 +150,7 @@ modulate = Color( 1, 1, 1, 0.121569 )
 position = Vector2( -376, 336 )
 scale = Vector2( 2.12, 3.2 )
 dir = 2
-posX = -376
+posX = -40
 posY = 336
 
 [node name="Border3" parent="." instance=ExtResource( 2 )]
@@ -159,7 +158,7 @@ modulate = Color( 1, 1, 1, 0.121569 )
 position = Vector2( 1688, 392 )
 scale = Vector2( 2.12, 3.2 )
 dir = 3
-posX = 1688
+posX = 1328
 posY = 392
 
 [node name="Border2" parent="." instance=ExtResource( 2 )]
@@ -168,14 +167,14 @@ position = Vector2( 656, 912 )
 scale = Vector2( 3.2, 2.12 )
 dir = 1
 posX = 656
-posY = 912
+posY = 832
 
 [node name="Border" parent="." instance=ExtResource( 2 )]
 modulate = Color( 1, 1, 1, 0.121569 )
 position = Vector2( 648, -168 )
 scale = Vector2( 3.2, 2.12 )
 posX = 648
-posY = -168
+posY = -128
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 622, 552 )
@@ -196,3 +195,11 @@ margin_bottom = 14.0
 stream = ExtResource( 11 )
 autoplay = true
 bus = "bgm"
+
+[node name="GameBorder" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1168, 360 )
+scale = Vector2( 0.491285, 1.9602 )
+
+[node name="GameBorder2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 112, 360 )
+scale = Vector2( 0.491285, 1.9602 )

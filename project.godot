@@ -140,4 +140,4 @@ mute={
 
 [rendering]
 
-environment/default_clear_color=Color( 0, 0, 0, 1 )
+environment/default_clear_color=Color( 0.521569, 0.0823529, 0.698039, 1 )

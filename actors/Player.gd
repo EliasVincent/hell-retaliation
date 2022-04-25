@@ -1,6 +1,6 @@
 extends KinematicBody2D
 # requires Node in group CAMERA to work
-export (float) var parry_cooldown = 0.4
+export (float) var parry_cooldown = 0.1 #Cooldown after Parry Button was pressed
 export (int) var speed = 200;
 export (int) var start_hp : int = 100;
 onready var hp = start_hp;
@@ -73,13 +73,11 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("change_color"):
 		color_switch_sound.play()
 		if color_state == ColorState.B:
-			if can_take_damage:
-				color_state = ColorState.A;
-				animation_player.play("A");
+			color_state = ColorState.A;
+			animation_player.play("A");
 		else:
-			if can_take_damage:
-				color_state = ColorState.B;
-				animation_player.play("B");
+			color_state = ColorState.B;
+			animation_player.play("B");
 	
 	# Parry
 	if Input.is_action_just_pressed("parry"):

@@ -103,7 +103,7 @@ playing = true
 shape = SubResource( 2 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 7 )]
-hp = 15.0
+hp = 6.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DIE = ExtResource( 9 )

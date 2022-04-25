@@ -1,299 +1,27 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://actors/ClockSpawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefab/stages/L1/S1_1.gd" type="Script" id=2]
-
-[sub_resource type="Animation" id=1]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("ClockSpawner:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 99, -242 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("ClockSpawner2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 848, -254 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("ClockSpawner:can_fire")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("ClockSpawner2:can_fire")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("ClockSpawner2:spawn_rate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.8 ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("ClockSpawner3:can_fire")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("ClockSpawner3:modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "S1-1"
-length = 6.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("ClockSpawner:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 99, -242 ), Vector2( 252, 240 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("ClockSpawner2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 848, -254 ), Vector2( 786, 518 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("ClockSpawner:can_fire")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("ClockSpawner2:can_fire")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/4/type = "method"
-tracks/4/path = NodePath("AnimationPlayer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 6 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "S1-1-2" ],
-"method": "play"
-} ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "S1-1-2"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("ClockSpawner:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 3, 5, 7, 10 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 252, 240 ), Vector2( 252, 240 ), Vector2( 646, 161 ), Vector2( 398, 346 ), Vector2( 252, 240 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("ClockSpawner2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 3, 10 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 786, 518 ), Vector2( 786, 518 ), Vector2( 786, 518 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("ClockSpawner2:spawn_rate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0.8, 0.4 ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "S1_2"
-length = 6.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("ClockSpawner:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 99, -242 ), Vector2( 267, 399 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("ClockSpawner2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 848, -254 ), Vector2( 885, 497 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("ClockSpawner3:can_fire")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("ClockSpawner3:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("ClockSpawner:can_fire")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 5.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("ClockSpawner2:can_fire")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 5.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
 
 [node name="S1-2" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="ClockSpawner" parent="." instance=ExtResource( 1 )]
-position = Vector2( 99, -242 )
+position = Vector2( 432, 344 )
 max_rotation = 65
 number_of_bullets = 6
 spawn_rate = 0.4
-can_fire = false
 
 [node name="ClockSpawner2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 848, -254 )
+position = Vector2( 848, 344 )
 min_rotation = 65
 max_rotation = 95
 number_of_bullets = 9
 changeColorAfterShot = false
 bulletColor = "B"
-can_fire = false
 
 [node name="ClockSpawner3" parent="." instance=ExtResource( 1 )]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 596, 68 )
+position = Vector2( 640, 448 )
 min_rotation = 170
 max_rotation = 390
 number_of_bullets = 8
@@ -302,14 +30,6 @@ bullet_speed = 200.0
 changeColorAfterShot = false
 bulletRotationChange = 15.0
 rotationChangeAfterTick = 0.0
-can_fire = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "S1_2"
-anims/RESET = SubResource( 1 )
-anims/S1-1 = SubResource( 2 )
-anims/S1-1-2 = SubResource( 3 )
-anims/S1_2 = SubResource( 4 )
 
 [connection signal="tree_exited" from="ClockSpawner" to="." method="_on_ClockSpawner_tree_exited"]
 [connection signal="tree_exited" from="ClockSpawner2" to="." method="_on_ClockSpawner2_tree_exited"]

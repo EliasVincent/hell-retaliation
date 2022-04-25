@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/ui-theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/space.gdshader" type="Shader" id=2]
+[ext_resource path="res://assets/sprites/white360p.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/open-sans/open-sans-bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scenes/menu/menu.gd" type="Script" id=5]
 
@@ -41,7 +42,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 640, 360 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 640, 360 )
+
+[node name="ColorRect" type="ColorRect" parent="Viewport"]
 modulate = Color( 0.929412, 0.929412, 0.929412, 1 )
 material = SubResource( 6 )
 anchor_right = 1.0

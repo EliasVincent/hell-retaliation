@@ -1,5 +1,8 @@
 extends Control
 
+onready var sprite = $Sprite
+onready var viewport = $Viewport
+
 
 func _ready():
 	$Version/GameVersion.text = ProjectSettings.get_setting("application/config/version")
@@ -8,6 +11,8 @@ func _ready():
 	$VBoxContainer/PlayButton.grab_focus()
 	if OS.has_feature('HTML5'):
 		$VBoxContainer/ExitButton.queue_free()
+	var vp = viewport.get_texture()
+	sprite.texture = vp
 
 
 func _on_PlayButton_pressed() -> void:

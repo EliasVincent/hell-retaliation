@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/fonts/open-sans/open-sans-bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scenes/Win.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/white360p.png" type="Texture" id=3]
 
 [sub_resource type="Shader" id=5]
 code = "shader_type canvas_item;
@@ -120,12 +122,21 @@ default_font = SubResource( 1 )
 [node name="Win" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( -304, -76 )
+rect_pivot_offset = Vector2( -404, 0 )
+script = ExtResource( 2 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 640, 360 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 640, 360 )
+
+[node name="ColorRect" type="ColorRect" parent="Viewport"]
 material = SubResource( 3 )
-margin_right = 1280.0
-margin_bottom = 720.0
+margin_right = 640.0
+margin_bottom = 360.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="Label" type="Label" parent="."]
@@ -156,3 +167,6 @@ rect_min_size = Vector2( 200, 70 )
 focus_neighbour_bottom = NodePath("../ExitButton")
 focus_next = NodePath("../ExitButton")
 text = "MENU"
+
+[connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Menu" to="." method="_on_Menu_pressed"]

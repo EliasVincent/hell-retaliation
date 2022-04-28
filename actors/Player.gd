@@ -58,6 +58,9 @@ export (float) var crouch_speed = speed / 2
 onready var camera : Camera2D = get_tree().get_nodes_in_group("CAMERA")[0]
 onready var screenShake : Node = camera.get_node("ScreenShake")
 
+export (float) var damage_cooldown = 0.9
+onready var damage_cooldown_timer = $DamageCooldown
+
 func _physics_process(delta):
 	# Input
 	var velocity := Vector2()
@@ -101,7 +104,8 @@ func _process(delta):
 	# Clamp to screen borders, make sure we're in the window
 	if clamp_to_window_borders:
 		global_position = Vector2(clamp(global_position.x, 0, screen_borders.x), clamp(global_position.y, 0, screen_borders.y));
-	
+	if GlobalVariables.playerHP == 0:
+		Game.change_scene("res://scenes/GameOver.tscn")
 # Andere Scripts (wie Bullets) können diese Methode hier aufrufen
 # Player ist so lange unverwundbar wie die Animation dauert
 # Zum ändern des Cooldowns die Länge von HIT im AnimationPlayer ändern
@@ -109,6 +113,7 @@ func take_damage(damage: float):
 	#print('damage', can_take_damage)
 	if (can_take_damage):
 		can_take_damage = false;
+		damage_cooldown_timer.start(damage_cooldown)
 		GlobalVariables.playerHP -= damage
 		player_hit_sound.play()
 		screenShake.start(0.1, 15, 4, 0)
@@ -174,10 +179,11 @@ func instance_parry_bullet(bulletArray):
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "HIT_B" or anim_name == "HIT_A":
-		can_take_damage = true
-		if GlobalVariables.playerHP == 0:
-			Game.change_scene("res://scenes/GameOver.tscn")
+	pass
+#	if anim_name == "HIT_B" or anim_name == "HIT_A":
+#		can_take_damage = true
+#		if GlobalVariables.playerHP == 0:
+#			Game.change_scene("res://scenes/GameOver.tscn")
 
 func get_color_state():
 	return color_state;
@@ -218,3 +224,7 @@ func change_to_game_over():
 func _on_FlySoundDelay_timeout():
 	print("timeout")
 	bullet_fly_sound.play()
+
+
+func _on_DamageCooldown_timeout():
+	can_take_damage = true

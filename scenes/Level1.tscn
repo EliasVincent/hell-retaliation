@@ -180,16 +180,11 @@ posY = -128
 position = Vector2( 622, 552 )
 
 [node name="StageManager" parent="." instance=ExtResource( 3 )]
+timePerStage = 20.0
 
 [node name="PauseLayer" parent="." instance=ExtResource( 4 )]
 
 [node name="Camera2D" parent="." instance=ExtResource( 7 )]
-
-[node name="HUD" parent="." instance=ExtResource( 6 )]
-margin_left = 20.0
-margin_top = 14.0
-margin_right = 20.0
-margin_bottom = 14.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
@@ -203,3 +198,9 @@ scale = Vector2( 0.491285, 1.9602 )
 [node name="GameBorder2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 112, 360 )
 scale = Vector2( 0.491285, 1.9602 )
+
+[node name="HUD" parent="." instance=ExtResource( 6 )]
+margin_left = 20.0
+margin_top = 14.0
+margin_right = 20.0
+margin_bottom = 14.0

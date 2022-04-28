@@ -58,6 +58,8 @@ func _ready():
 	# compared to array size soo it do be like that
 	totalStages -= 1
 	
+	GlobalVariables.initialStageTime = timePerStage
+	
 func _process(delta):
 	# this will be a mess. DO NOT PUT ENEMIES OUTSIDE STAGES IN ENEMY GROUP
 	# If you want ie a bossfight that boss should be it's own group
@@ -69,17 +71,18 @@ func _process(delta):
 	if willSwitch:
 		if currStageCount > totalStages:
 			win()
+			self.set_process(false)
 			willSwitch = false
 		else:
 			instanceNextScene()
 			currStageCount += 1
 			willSwitch = false
-		
+	GlobalVariables.stageTimer = stageTimer.time_left
 func win():
 	Game.change_scene("res://scenes/Win.tscn")
 func instanceNextScene():
 	currStage = stageList[currStageCount]
-#	currStage = stageList[1]
+	#currStage = stageList[3]
 	var currStageInstance = currStage.instance()
 	get_parent().add_child_below_node(self, currStageInstance);
 	

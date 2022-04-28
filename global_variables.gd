@@ -1,6 +1,8 @@
 extends Node
 
 var playerHP : float;
+var stageTimer : float;
+var initialStageTime : float = 60;
 
 func _process(delta):
 	if Input.is_action_just_pressed("fullscreen"):

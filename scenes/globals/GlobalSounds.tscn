@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/sfx/enemy_death.wav" type="AudioStream" id=1]
 [ext_resource path="res://scenes/globals/GlobalSounds.gd" type="Script" id=2]
+[ext_resource path="res://assets/sfx/health_pickup.wav" type="AudioStream" id=3]
 
 [node name="GlobalSounds" type="Node"]
 script = ExtResource( 2 )
@@ -9,3 +10,7 @@ script = ExtResource( 2 )
 [node name="EnemyDeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 bus = "enemy"
+
+[node name="HealthPickupSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "player"

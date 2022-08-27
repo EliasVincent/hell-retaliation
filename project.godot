@@ -32,7 +32,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="bullet-hell-jam-2022"
+config/name="hell-retaliation"
 run/main_scene="res://scenes/menu/menu.tscn"
 boot_splash/image="res://assets/splash.png"
 boot_splash/bg_color=Color( 0.0862745, 0.0862745, 0.0862745, 1 )
@@ -46,6 +46,7 @@ Transitions="*res://addons/game-template/transition/transition.tscn"
 Utils="*res://addons/game-template/utils.gd"
 GlobalVariables="*res://global_variables.gd"
 GlobalSounds="*res://scenes/globals/GlobalSounds.tscn"
+SaveManager="*res://scripts/SaveManager.gd"
 
 [category]
 

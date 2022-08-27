@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/BorderMovement.gd" type="Script" id=1]
+[ext_resource path="res://prefab/Border.tscn" type="PackedScene" id=2]
+
+[node name="Borders" type="Node2D"]
+
+[node name="Border4" type="StaticBody2D" parent="." instance=ExtResource( 2 )]
+modulate = Color( 1, 1, 1, 0.121569 )
+position = Vector2( -376, 336 )
+scale = Vector2( 2.12, 3.2 )
+script = ExtResource( 1 )
+dir = 2
+posX = -40
+posY = 336
+
+[node name="Border3" type="StaticBody2D" parent="." instance=ExtResource( 2 )]
+modulate = Color( 1, 1, 1, 0.121569 )
+position = Vector2( 1688, 392 )
+scale = Vector2( 2.12, 3.2 )
+script = ExtResource( 1 )
+dir = 3
+posX = 1328
+posY = 392
+
+[node name="Border2" type="StaticBody2D" parent="." instance=ExtResource( 2 )]
+modulate = Color( 1, 1, 1, 0.121569 )
+position = Vector2( 656, 912 )
+scale = Vector2( 3.2, 2.12 )
+script = ExtResource( 1 )
+dir = 1
+posX = 656
+posY = 832
+
+[node name="Border" type="StaticBody2D" parent="." instance=ExtResource( 2 )]
+modulate = Color( 1, 1, 1, 0.121569 )
+position = Vector2( 648, -168 )
+scale = Vector2( 3.2, 2.12 )
+script = ExtResource( 1 )
+posX = 648
+posY = -128

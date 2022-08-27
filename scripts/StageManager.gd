@@ -36,7 +36,14 @@ func list_files_in_directory(path):
 func _ready():
 	var levelFolder : String
 	
-	currStageCount = 0
+	if GlobalVariables.loadLastSave == true:
+		currStageCount = SaveManager.loader() as int
+		if currStageCount > 0:
+			currStageCount -= 1
+		print("currStage count is now: ", currStageCount)
+	elif GlobalVariables.loadLastSave == false:
+		currStageCount = 0
+	
 	match levelToPlay:
 		# TODO: Refactor on multiple levels
 		1:
@@ -76,6 +83,8 @@ func _process(delta):
 		else:
 			instanceNextScene()
 			currStageCount += 1
+			SaveManager.saver(currStageCount)
+			print("SAVED: ", currStageCount as int)
 			willSwitch = false
 	GlobalVariables.stageTimer = stageTimer.time_left
 func win():

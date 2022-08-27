@@ -132,16 +132,16 @@ environment = ExtResource( 13 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 2 )
-position = Vector2( 640, 360 )
-scale = Vector2( 2, 2 )
+position = Vector2( 352, 240 )
+scale = Vector2( 4, 4 )
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 640, 360 )
+size = Vector2( 352, 240 )
 
 [node name="ColorRect2" type="ColorRect" parent="Viewport"]
 material = SubResource( 4 )
-margin_right = 640.0
-margin_bottom = 360.0
+margin_right = 352.0
+margin_bottom = 240.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="Container" type="Node2D" parent="."]

@@ -228,3 +228,8 @@ func _on_FlySoundDelay_timeout():
 
 func _on_DamageCooldown_timeout():
 	can_take_damage = true
+
+
+func _on_HealingTickrate_timeout():
+	if GlobalVariables.playerHP < 90:
+		GlobalVariables.playerHP += 2

@@ -216,9 +216,14 @@ one_shot = true
 
 [node name="DamageCooldown" type="Timer" parent="."]
 
+[node name="HealingTickrate" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="ParryArea" to="." method="_on_ParryArea_area_entered"]
 [connection signal="area_exited" from="ParryArea" to="." method="_on_ParryArea_area_exited"]
 [connection signal="timeout" from="ParryCooldownTimer" to="." method="_on_ParryCooldownTimer_timeout"]
 [connection signal="timeout" from="FlySoundDelay" to="." method="_on_FlySoundDelay_timeout"]
 [connection signal="timeout" from="DamageCooldown" to="." method="_on_DamageCooldown_timeout"]
+[connection signal="timeout" from="HealingTickrate" to="." method="_on_HealingTickrate_timeout"]

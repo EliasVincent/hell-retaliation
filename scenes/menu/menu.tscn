@@ -43,12 +43,12 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 640, 360 )
-scale = Vector2( 2, 2 )
+position = Vector2( 641, 357 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 640, 360 )
+size = Vector2( 352, 240 )
 
 [node name="ColorRect" type="ColorRect" parent="Viewport"]
 modulate = Color( 0.929412, 0.929412, 0.929412, 1 )

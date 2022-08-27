@@ -9,7 +9,9 @@ var windowY = Game.size.y
 export (float) var spawnTime = 5.0
 
 func _ready():
-	spawn_healthPack()
+	#spawn_healthPack()
+	#DISABLED
+	pass
 
 func _on_SpawnTimer_timeout():
 	spawn_healthPack()

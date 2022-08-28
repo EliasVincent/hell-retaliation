@@ -1,17 +1,20 @@
 extends Node2D
 
 onready var enemyHit = $EnemyHit
+onready var healthBar : ProgressBar
 onready var animationPlayer = get_parent().get_node("AnimationPlayer")
 
 export (float) var hp = 10
 var canTakeDamage = true
 var willDie = true
+var initialHp : float
 
 func _ready():
-	#nothing
-	pass
+	initialHp = hp
+	healthBar = get_parent().get_node("HealthBarContainer/ProgressBar")
 
 func _physics_process(delta):
+	healthBar.value = (hp / initialHp) * 100
 	if hp <= 0:
 		if willDie:
 			die()

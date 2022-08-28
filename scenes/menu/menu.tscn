@@ -222,7 +222,20 @@ text = "LEVEL 1"
 position = Vector2( 272, 195 )
 spawn_rate = 2.0
 
+[node name="HealthBarContainer" parent="ClockSpawner" index="7"]
+visible = false
+
+[node name="ClockSpawner2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1056, 195 )
+spawn_rate = 2.0
+
+[node name="HealthBarContainer" parent="ClockSpawner2" index="7"]
+visible = false
+
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+
+[editable path="ClockSpawner"]
+[editable path="ClockSpawner2"]

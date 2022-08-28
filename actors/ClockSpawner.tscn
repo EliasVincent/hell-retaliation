@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://actors/BulletSpawner.gd" type="Script" id=1]
 [ext_resource path="res://actors/bullets/BulletGeneric.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://prefab/Explosion.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/actorsDIE.tres" type="Animation" id=9]
 [ext_resource path="res://assets/sprites/bullet64.png" type="Texture" id=10]
+[ext_resource path="res://prefab/HealthBarContainer.tscn" type="PackedScene" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -37,6 +38,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.854902, 0.172549, 0.219608, 0 ), Color( 2.85, 0.17, 0.22, 1 ), Color( 2.18497, 0.17085, 0.219869, 0.666667 ), Color( 0.854902, 0.172549, 0.219608, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 2, 2, 2, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -77,6 +90,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 0.854902, 0.172549, 0.219608, 0 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("HealthBarContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="ClockSpawner" type="Node2D" groups=["ENEMY"]]
 script = ExtResource( 1 )
@@ -91,6 +116,7 @@ rotationChangeAfterTick = 90.0
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
+frame = 1
 speed_scale = 0.2
 playing = true
 
@@ -113,9 +139,12 @@ anims/RESET = SubResource( 4 )
 emitting = false
 
 [node name="EmitDot" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0.854902, 0.172549, 0.219608, 0 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 10 )
+
+[node name="HealthBarContainer" parent="." instance=ExtResource( 11 )]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="EnemyManager" method="_on_Area2D_area_entered"]

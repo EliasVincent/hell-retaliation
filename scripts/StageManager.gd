@@ -14,6 +14,8 @@ var willSwitch : bool = false
 var totalStages : int
 
 onready var stageTimer = $StageTimer
+onready var animationPlayer = $AnimationPlayer
+
 export (float) var timePerStage = 60.0
 
 func list_files_in_directory(path):
@@ -36,16 +38,17 @@ func list_files_in_directory(path):
 func _ready():
 	var levelFolder : String
 	
+	# loading currStageCount from save
+	# we subtract 1 cause totalStages
 	if GlobalVariables.loadLastSave == true:
 		currStageCount = SaveManager.loader() as int
 		if currStageCount > 0:
 			currStageCount -= 1
-		print("currStage count is now: ", currStageCount)
 	elif GlobalVariables.loadLastSave == false:
 		currStageCount = 0
 	
 	match levelToPlay:
-		# TODO: Refactor on multiple levels
+		# TODO: Refactor for multiple levels
 		1:
 			levelFolder = "L1"
 
@@ -90,6 +93,8 @@ func _process(delta):
 func win():
 	Game.change_scene("res://scenes/Win.tscn")
 func instanceNextScene():
+	#TODO: freeze gameplay while doing this
+	animationPlayer.play("FADE_TO_NEXT_STAGE")
 	currStage = stageList[currStageCount]
 	#currStage = stageList[3]
 	var currStageInstance = currStage.instance()
@@ -113,3 +118,7 @@ func _on_StageTimer_timeout():
 		var animPlayer = enemy.get_node("AnimationPlayer")
 		animPlayer.play("DIE")
 	# switch to next scene while keeping old enemies for ~5 seconds
+
+
+func _on_AnimationPlayer_animation_finished(anim_name:String):
+	pass # Replace with function body.

@@ -1,26 +1,45 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/ui-theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/space.gdshader" type="Shader" id=2]
+[ext_resource path="res://actors/ClockSpawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/white360p.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/open-sans/open-sans-bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scenes/menu/menu.gd" type="Script" id=5]
 
-[sub_resource type="ShaderMaterial" id=6]
-shader = ExtResource( 2 )
-shader_param/iterations = 30
-shader_param/formuparam = 1.3
-shader_param/volsteps = 20
-shader_param/stepsize = 0.1
-shader_param/zoom = 0.8
-shader_param/tile = 0.2
-shader_param/speed = 0.008
-shader_param/brightness = 0.125
-shader_param/darkmatter = 0.1
-shader_param/distfading = 0.65
-shader_param/saturation = 0.85
-shader_param/iResolution = Vector2( 192, 192 )
-shader_param/iMouse = Vector2( 0, 0 )
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+
+uniform vec4 bg_color: hint_color;
+
+float rand(vec2 st) {
+    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+}
+
+void fragment() {
+	float size = 100.0;
+	float prob = 0.9;
+	vec2 pos = floor(1.0 / size * FRAGCOORD.xy);
+	float color = 0.0;
+	float starValue = rand(pos);
+
+	if (starValue > prob)
+	{
+		vec2 center = size * pos + vec2(size, size) * 0.5;
+		float t = 0.9 + 0.2 * sin(TIME * 8.0 + (starValue - prob) / (1.0 - prob) * 45.0);
+		color = 1.0 - distance(FRAGCOORD.xy, center) / (0.5 * size);
+		color = color * t / (abs(FRAGCOORD.y - center.y)) * t / (abs(FRAGCOORD.x - center.x));
+	}
+	else if (rand(SCREEN_UV.xy / 20.0) > 0.996)
+	{
+		float r = rand(SCREEN_UV.xy);
+		color = r * (0.85 * sin(TIME * (r * 5.0) + 720.0 * r) + 0.95);
+	}
+	COLOR = vec4(vec3(color),1.0) + bg_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/bg_color = null
 
 [sub_resource type="DynamicFont" id=5]
 size = 60
@@ -43,7 +62,6 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
 position = Vector2( 641, 357 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
@@ -52,8 +70,7 @@ texture = ExtResource( 3 )
 size = Vector2( 352, 240 )
 
 [node name="ColorRect" type="ColorRect" parent="Viewport"]
-modulate = Color( 0.929412, 0.929412, 0.929412, 1 )
-material = SubResource( 6 )
+material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
@@ -200,6 +217,10 @@ margin_top = 337.0
 margin_right = 988.0
 margin_bottom = 397.0
 text = "LEVEL 1"
+
+[node name="ClockSpawner" parent="." instance=ExtResource( 2 )]
+position = Vector2( 272, 195 )
+spawn_rate = 2.0
 
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]

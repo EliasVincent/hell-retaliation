@@ -63,12 +63,13 @@ use_velocity = true
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="BlackSprite" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 11 )
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -124,7 +124,6 @@ func take_damage(damage: float):
 
 
 # PARRY STUFF OH LAWD
-# TODO: Color state, but we need better colors than BLACK WHITE lol
 func parry(bullets: Array):
 	bullets_to_add += bullets;
 	instance_parry_bullet(bullets_to_add);
@@ -231,5 +230,5 @@ func _on_DamageCooldown_timeout():
 
 
 func _on_HealingTickrate_timeout():
-	if GlobalVariables.playerHP < 90:
+	if GlobalVariables.playerHP < 92:
 		GlobalVariables.playerHP += 2

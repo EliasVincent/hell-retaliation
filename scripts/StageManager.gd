@@ -87,7 +87,8 @@ func _process(delta):
 			instanceNextScene()
 			currStageCount += 1
 			SaveManager.saver(currStageCount)
-			print("SAVED: ", currStageCount as int)
+			SaveManager.hpSaver(GlobalVariables.playerHP)
+			print("SAVED: ", currStageCount as int, "HP SAVED: ", GlobalVariables.playerHP)
 			willSwitch = false
 	GlobalVariables.stageTimer = stageTimer.time_left
 func win():

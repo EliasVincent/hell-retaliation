@@ -46,6 +46,8 @@ func _on_Resume_pressed():
 
 
 func _on_Main_Menu_pressed():
+	# save playerHP. Already done after each stage, here again
+	SaveManager.hpSaver(GlobalVariables.playerHP)
 	Game.change_scene("res://scenes/menu/menu.tscn", {
 		'show_progress_bar': false
 	})

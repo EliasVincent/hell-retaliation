@@ -223,7 +223,7 @@ position = Vector2( 272, 195 )
 spawn_rate = 2.0
 
 [node name="Sprite" parent="ClockSpawner" index="0"]
-frame = 0
+frame = 3
 
 [node name="HealthBarContainer" parent="ClockSpawner" index="7"]
 visible = false
@@ -233,7 +233,7 @@ position = Vector2( 1056, 195 )
 spawn_rate = 2.0
 
 [node name="Sprite" parent="ClockSpawner2" index="0"]
-frame = 0
+frame = 3
 
 [node name="HealthBarContainer" parent="ClockSpawner2" index="7"]
 visible = false

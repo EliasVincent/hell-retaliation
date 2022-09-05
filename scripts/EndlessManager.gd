@@ -3,8 +3,9 @@ extends Node2D
 # ENEMIES
 var enemiesToInclude: Array
 onready var clockSpawner = preload("res://actors/ClockSpawner.tscn")
+onready var bombSpawner = preload("res://actors/BombSpawner.tscn")
 
-var currStageCount : int
+export var currStageCount : int
 var currStage
 
 var willSwitch : bool = false
@@ -77,7 +78,10 @@ func create_new_stage(currStageCount):
 
 func match_enemies_to_include():
 	#TODO: Wie werden nach progressiven Stages die Odds angepasst?
+	enemiesToInclude = []
 	enemiesToInclude.append(clockSpawner)
+	if currStageCount > 4:
+		enemiesToInclude.append(bombSpawner)
 
 
 func _on_StageTimer_timeout():

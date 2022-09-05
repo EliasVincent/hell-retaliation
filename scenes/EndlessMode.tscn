@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/EndlessManager.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/gameplay/pause-layer/pause-layer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://prefab/GameBorder.tscn" type="PackedScene" id=4]
+[ext_resource path="res://prefab/Level1BG.tscn" type="PackedScene" id=5]
+[ext_resource path="res://prefab/Camera2DWithScreenShake.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/EndlessMode.gd" type="Script" id=8]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+light_mode = 1
+
+[node name="EndlessMode" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 352, 240 )
+scale = Vector2( 4, 4 )
+
+[node name="Viewport" parent="." instance=ExtResource( 5 )]
+
+[node name="Container" type="Node2D" parent="."]
+
+[node name="PauseLayer" parent="." instance=ExtResource( 3 )]
+
+[node name="Camera2D" parent="." instance=ExtResource( 6 )]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 649, 484 )
+
+[node name="EndlessManager" parent="." instance=ExtResource( 1 )]
+timePerStage = 6.0
+
+[node name="GameBorder" parent="." instance=ExtResource( 4 )]
+modulate = Color( 1, 1, 1, 0.392157 )
+position = Vector2( 1168, 360 )
+scale = Vector2( 0.491285, 1.9602 )
+
+[node name="GameBorder2" parent="." instance=ExtResource( 4 )]
+modulate = Color( 1, 1, 1, 0.392157 )
+position = Vector2( 112, 360 )
+scale = Vector2( 0.491285, 1.9602 )
+
+[node name="HUD" parent="." instance=ExtResource( 7 )]

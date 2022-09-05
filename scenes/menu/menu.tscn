@@ -95,6 +95,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="EndlessButton" type="Button" parent="."]
+margin_left = 829.0
+margin_top = 325.0
+margin_right = 976.0
+margin_bottom = 365.0
+text = "ENDLESS"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -222,9 +229,6 @@ text = "LEVEL 1"
 position = Vector2( 272, 195 )
 spawn_rate = 2.0
 
-[node name="Sprite" parent="ClockSpawner" index="0"]
-frame = 3
-
 [node name="HealthBarContainer" parent="ClockSpawner" index="7"]
 visible = false
 
@@ -232,12 +236,10 @@ visible = false
 position = Vector2( 1056, 195 )
 spawn_rate = 2.0
 
-[node name="Sprite" parent="ClockSpawner2" index="0"]
-frame = 3
-
 [node name="HealthBarContainer" parent="ClockSpawner2" index="7"]
 visible = false
 
+[connection signal="pressed" from="EndlessButton" to="." method="_on_EndlessButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]

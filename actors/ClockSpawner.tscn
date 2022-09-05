@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/sprites/clockSpawner/clock2.png" type="Texture" id=6]
 [ext_resource path="res://actors/EnemyManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://prefab/Explosion.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/actorsDIE.tres" type="Animation" id=9]
+[ext_resource path="res://assets/clockSpawnerDIE.tres" type="Animation" id=9]
 [ext_resource path="res://assets/sprites/bullet64.png" type="Texture" id=10]
 [ext_resource path="res://prefab/HealthBarContainer.tscn" type="PackedScene" id=11]
 
@@ -116,7 +116,7 @@ rotationChangeAfterTick = 90.0
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 1
+frame = 3
 speed_scale = 0.2
 playing = true
 

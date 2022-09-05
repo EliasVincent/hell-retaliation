@@ -106,7 +106,7 @@ func instanceNextScene():
 
 
 func _on_StageTimer_timeout():
-	pass
+	#pass
 	# get all remaining ENEMY 
 	var remainingEnemies = get_tree().get_nodes_in_group("ENEMY")
 	for enemy in remainingEnemies:

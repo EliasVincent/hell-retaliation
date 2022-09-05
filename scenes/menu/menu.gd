@@ -42,3 +42,8 @@ func _on_ContinueButton_pressed():
 	var params = { show_progress_bar = true, loadSave = true }
 	GlobalVariables.loadLastSave = true
 	Game.change_scene("res://scenes/Level1.tscn", params)
+
+func _on_EndlessButton_pressed():
+	var params = { show_progress_bar = true }
+	GlobalVariables.loadLastSave = false
+	Game.change_scene("res://scenes/EndlessMode.tscn", params)

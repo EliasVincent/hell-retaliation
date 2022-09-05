@@ -7,7 +7,7 @@
 script = ExtResource( 2 )
 
 [node name="ClockSpawner" parent="." instance=ExtResource( 1 )]
-position = Vector2( 424, 120 )
+position = Vector2( 396, 160 )
 max_rotation = 65
 number_of_bullets = 6
 spawn_rate = 0.4

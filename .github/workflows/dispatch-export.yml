@@ -106,29 +106,29 @@ jobs:
           ITCH_USER: ${{ secrets.ITCH_USER }}
           PACKAGE: itch.zip
 
-  export_web:
-    name: Web Export
-    runs-on: ubuntu-20.04
-    if: ${{ github.event.inputs.export_platform == 'web' || github.event.inputs.export_platform == 'all' }}
-    container:
-      image: barichello/godot-ci:3.5
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Web Build
-        run: |
-          cd ${EXPORT_FOLDER}
-          mkdir -v -p build/web
-          godot -v --export "HTML5" ./build/web/index.html
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: Web
-          path: ${{ env.EXPORT_FOLDER }}/build/web
+  # export_web:
+  #   name: Web Export
+  #   runs-on: ubuntu-20.04
+  #   if: ${{ github.event.inputs.export_platform == 'web' || github.event.inputs.export_platform == 'all' }}
+  #   container:
+  #     image: barichello/godot-ci:3.5
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #     - name: Setup
+  #       run: |
+  #         mkdir -v -p ~/.local/share/godot/templates
+  #         mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+  #     - name: Web Build
+  #       run: |
+  #         cd ${EXPORT_FOLDER}
+  #         mkdir -v -p build/web
+  #         godot -v --export "HTML5" ./build/web/index.html
+  #     - name: Upload Artifact
+  #       uses: actions/upload-artifact@v1
+  #       with:
+  #         name: Web
+  #         path: ${{ env.EXPORT_FOLDER }}/build/web
       # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
       # - name: Install rsync 📚
         # run: |

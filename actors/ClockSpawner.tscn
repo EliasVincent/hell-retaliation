@@ -75,7 +75,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="ClockSpawner" type="Node2D" groups=["ENEMY"]]
+[node name="ClockSpawner" type="Node2D" groups=["CLOCK_SPAWNER", "ENEMY"]]
 script = ExtResource( 1 )
 bullet_scene = ExtResource( 2 )
 min_rotation = 35
@@ -88,7 +88,7 @@ rotationChangeAfterTick = 90.0
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 2
+frame = 3
 speed_scale = 0.2
 playing = true
 

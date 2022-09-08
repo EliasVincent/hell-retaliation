@@ -64,7 +64,7 @@ func create_new_stage(currStageCount):
 		var enemy = enemiesToInclude[randi() % enemiesToInclude.size()].instance()
 		stage.add_child(enemy)
 		# setze die Position des Gegners
-		enemy.position = Vector2(rand_range(0, get_viewport_rect().size.x), rand_range(0, get_viewport_rect().size.y))
+		enemy.position = Vector2(rand_range(256, get_viewport_rect().size.x - 256), rand_range(80, get_viewport_rect().size.y - 80))
 		# prevent enemy overlap
 		for j in i:
 			# wenn die Positionen der Gegner zu nah beieinander sind
@@ -73,11 +73,30 @@ func create_new_stage(currStageCount):
 				enemy.position = Vector2(rand_range(0, get_viewport_rect().size.x), rand_range(0, get_viewport_rect().size.y))
 				# setze den counter auf 0, damit alle Gegner nochmal überprüft werden
 				j = 0
+		
+		# --- VAR RNG ---
+		# enemy variable variationen
+		enemy.min_rotation = rand_range(10, 100)
+		enemy.max_rotation = rand_range(100, 360)
+
+		if enemy.is_in_group("CLOCK_SPAWNER"):
+			enemy.number_of_bullets = rand_range(3, 8)
+		
+		if enemy.is_in_group("BOMB_SPAWNER"):
+			#enemy.changeColorAfterShot = randi() % 2 == 0
+			var oneOrZero = randi() % 2
+			if oneOrZero == 0:
+				enemy.changeColorAfterShot = true
+			else:
+				enemy.changeColorAfterShot = false
+
+
+		enemy.bullet_speed = rand_range(180, 400)
+		enemy.bulletRotationChange = rand_range(0, 40)
 	return stage
 
 
 func match_enemies_to_include():
-	#TODO: Wie werden nach progressiven Stages die Odds angepasst?
 	enemiesToInclude = []
 	enemiesToInclude.append(clockSpawner)
 	if currStageCount > 4:

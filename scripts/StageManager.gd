@@ -48,7 +48,6 @@ func _ready():
 		currStageCount = 0
 	
 	match levelToPlay:
-		# TODO: Refactor for multiple levels
 		1:
 			levelFolder = "L1"
 

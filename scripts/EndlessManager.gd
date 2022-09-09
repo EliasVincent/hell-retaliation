@@ -14,12 +14,20 @@ onready var stageTimer = $StageTimer
 
 export (float) var timePerStage = 60.0
 
+# RNG Values for spawning
+var clockSpawnerRngValues = {
+	"minHp" : 10,
+	"maxHp" : 15,
+	"minSpeed" : 80,
+	"maxSpeed" : 250,
+}
+
 
 func _ready():
 	# loading currStageCount from save
 	# we subtract 1 cause totalStages
 	if GlobalVariables.loadLastSave == true:
-		currStageCount = SaveManager.loader() as int
+		currStageCount = SaveManager.endlessLoader() as int
 		if currStageCount > 0:
 			currStageCount -= 1
 	elif GlobalVariables.loadLastSave == false:
@@ -38,8 +46,8 @@ func _process(delta):
 	if willSwitch:
 		instanceNextScene()
 		currStageCount += 1
-		SaveManager.saver(currStageCount)
-		SaveManager.hpSaver(GlobalVariables.playerHP)
+		SaveManager.endlessSaver(currStageCount)
+		SaveManager.endlessHpSaver(GlobalVariables.playerHP)
 		print("SAVED: ", currStageCount as int, "HP SAVED: ",GlobalVariables.playerHP)
 		willSwitch = false
 	GlobalVariables.stageTimer = stageTimer.time_left
@@ -63,6 +71,7 @@ func create_new_stage(currStageCount):
 		# instance enemy out of the inclusion array
 		var enemy = enemiesToInclude[randi() % enemiesToInclude.size()].instance()
 		stage.add_child(enemy)
+		var enemyManager = enemy.get_node("EnemyManager")
 		# setze die Position des Gegners
 		enemy.position = Vector2(rand_range(256, get_viewport_rect().size.x - 256), rand_range(80, get_viewport_rect().size.y - 80))
 		# prevent enemy overlap
@@ -81,17 +90,18 @@ func create_new_stage(currStageCount):
 
 		if enemy.is_in_group("CLOCK_SPAWNER"):
 			enemy.number_of_bullets = rand_range(3, 8)
+			enemyManager.hp = rand_range(clockSpawnerRngValues.minHp, clockSpawnerRngValues.maxHp)
 		
 		if enemy.is_in_group("BOMB_SPAWNER"):
 			#enemy.changeColorAfterShot = randi() % 2 == 0
 			var oneOrZero = randi() % 2
 			if oneOrZero == 0:
-				enemy.changeColorAfterShot = true
+				enemy.bulletColor = "A"
 			else:
-				enemy.changeColorAfterShot = false
+				enemy.bulletColor = "B"
 
 
-		enemy.bullet_speed = rand_range(180, 400)
+		enemy.bullet_speed = rand_range(clockSpawnerRngValues.minSpeed, clockSpawnerRngValues.maxSpeed)
 		enemy.bulletRotationChange = rand_range(0, 40)
 	return stage
 
@@ -101,6 +111,8 @@ func match_enemies_to_include():
 	enemiesToInclude.append(clockSpawner)
 	if currStageCount > 4:
 		enemiesToInclude.append(bombSpawner)
+		clockSpawnerRngValues.minHp = 12
+		clockSpawnerRngValues.maxHp = 18
 
 
 func _on_StageTimer_timeout():
@@ -108,6 +120,7 @@ func _on_StageTimer_timeout():
 	var remainingEnemies = get_tree().get_nodes_in_group("ENEMY")
 	for enemy in remainingEnemies:
 		#TODO: handle this mess AAAAAA
+		#this could be enemy.die()??
 		# remove from ENEMY group -> 0 in group -> next 
 		
 		enemy.remove_from_group("ENEMY")

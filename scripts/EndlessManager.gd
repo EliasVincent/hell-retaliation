@@ -102,7 +102,7 @@ func create_new_stage(currStageCount):
 
 
 		enemy.bullet_speed = rand_range(clockSpawnerRngValues.minSpeed, clockSpawnerRngValues.maxSpeed)
-		enemy.bulletRotationChange = rand_range(0, 40)
+		enemy.bulletRotationChange = rand_range(0, 15)
 	return stage
 
 

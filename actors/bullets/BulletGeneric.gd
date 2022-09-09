@@ -77,3 +77,7 @@ func _on_BulletGeneric_body_entered(body):
 			pass
 		else:
 			body.take_damage(5.0); # siehe Player Skript
+
+
+func _on_DespawnTimer_timeout():
+	$AnimationPlayer.play("DIE")

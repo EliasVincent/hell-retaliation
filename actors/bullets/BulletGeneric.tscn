@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://actors/bullets/BulletGeneric.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/bullet64B_anim.png" type="Texture" id=2]
@@ -55,6 +55,50 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
 
+[sub_resource type="Animation" id=12]
+resource_name = "DIE"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="BulletGeneric" type="Area2D" groups=["BULLET"]]
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
@@ -63,16 +107,24 @@ use_velocity = true
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
-frame = 2
 playing = true
 
 [node name="BlackSprite" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 11 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 16.0
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DIE = SubResource( 12 )
+anims/RESET = SubResource( 13 )
+
 [connection signal="body_entered" from="." to="." method="_on_BulletGeneric_body_entered"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_DespawnTimer_timeout"]

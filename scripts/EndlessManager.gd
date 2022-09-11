@@ -7,6 +7,7 @@ onready var bombSpawner = preload("res://actors/BombSpawner.tscn")
 
 export var currStageCount : int
 var currStage
+var currBoss : int = 1
 
 var willSwitch : bool = false
 
@@ -55,7 +56,14 @@ func _process(delta):
 func instanceNextScene():
 	match_enemies_to_include()
 
-	var newStage = create_new_stage(currStageCount)
+	var newStage : Node2D
+
+	if currStageCount % 15 == 0 and currStageCount != 0:
+		newStage = create_new_boss(currBoss)
+		currBoss += 1
+	else:
+		newStage = create_new_stage(currStageCount)
+	
 
 	currStage = newStage
 	get_parent().add_child_below_node(self, currStage);
@@ -105,6 +113,11 @@ func create_new_stage(currStageCount):
 		enemy.bulletRotationChange = rand_range(0, 15)
 	return stage
 
+func create_new_boss(currBoss):
+	var stage = Node2D.new()
+	print("BOSS STAGE")
+	# right now this will just instantly jump to the next stage
+	pass
 
 func match_enemies_to_include():
 	enemiesToInclude = []

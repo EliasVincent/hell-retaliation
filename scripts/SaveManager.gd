@@ -13,8 +13,6 @@ func genericSaver(dataToSave, fileName: String, dataType: String):
 		file.store_string(dataToSave as String)
 	if dataType == "float":
 		file.store_float(dataToSave as float)
-	else:
-		print("NO VALID FILE TYPE")
 	
 	file.close()
 
@@ -27,8 +25,6 @@ func genericLoader(fileName: String, dataType: String):
 		finalData = file.get_as_text()
 	if dataType == "float":
 		finalData = file.get_float()
-	else:
-		print("NO VALID FILE TYPE")
 	
 	file.close()
 	return finalData

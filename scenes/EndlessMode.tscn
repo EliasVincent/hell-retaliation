@@ -33,7 +33,7 @@ scale = Vector2( 4, 4 )
 position = Vector2( 649, 484 )
 
 [node name="EndlessManager" parent="." instance=ExtResource( 1 )]
-timePerStage = 6.0
+timePerStage = 20.0
 
 [node name="GameBorder" parent="." instance=ExtResource( 4 )]
 modulate = Color( 1, 1, 1, 0.392157 )

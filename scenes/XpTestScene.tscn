@@ -1,9 +1,41 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://actors/enemies/BombSpawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/xp/XpBlob.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/DebugInfo.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prefab/Camera2DWithScreenShake.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "MOVE"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("XpBlob:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 216, 136 ), Vector2( 1000, 496 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("XpBlob:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 216, 136 ) ]
+}
 
 [node name="SpawnerTestScene" type="Node2D"]
 
@@ -16,7 +48,13 @@ margin_bottom = 720.0
 
 [node name="Camera2D" parent="." instance=ExtResource( 5 )]
 
-[node name="BombSpawner" parent="." instance=ExtResource( 2 )]
-position = Vector2( 640, 57 )
-bullet_speed = 250.0
-bulletRotationChange = 30.0
+[node name="XpBlob" parent="." instance=ExtResource( 2 )]
+position = Vector2( 216, 136 )
+
+[node name="XpBlob2" parent="." instance=ExtResource( 2 )]
+
+[node name="XpBlob3" parent="." instance=ExtResource( 2 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/MOVE = SubResource( 1 )
+anims/RESET = SubResource( 2 )

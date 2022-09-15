@@ -31,6 +31,11 @@ export (float) var spawnerRotationChange = 0
 # change rotation after each shot
 export (float) var rotationChangeAfterTick = 0
 
+# change size of bullets
+export (bool) var changeBulletSize = false
+# Scale Vector2 of Bullet Size (default: 0.5,0.5)
+export (Vector2) var bulletScaleVector = Vector2(0.25,0.25)
+
 var rotations = [];
 export (bool) var log_to_console;
 
@@ -100,6 +105,8 @@ func spawn_bullets():
 		spawned_bullets[i].spawner = self;
 		spawned_bullets[i].bulletColor = bulletColor;
 		# _ready() does not work for the color
+		if (changeBulletSize):
+			spawned_bullets[i].global_scale = bulletScaleVector
 		spawned_bullets[i].init();
 		
 		if (log_to_console):
@@ -115,3 +122,7 @@ func _on_Timer_timeout():
 	
 	if (log_to_console):
 		print("Spawned Bullets")
+
+
+func _on_Area2D_area_entered(area):
+	pass # Replace with function body.

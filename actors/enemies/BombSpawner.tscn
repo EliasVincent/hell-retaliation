@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://assets/sprites/bomb_enemy.png" type="Texture" id=1]
-[ext_resource path="res://actors/EnemyManager.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/actorsEMIT.tres" type="Animation" id=1]
+[ext_resource path="res://assets/actorsDIE.tres" type="Animation" id=2]
 [ext_resource path="res://actors/BulletSpawner.gd" type="Script" id=3]
-[ext_resource path="res://actors/bullets/BulletGeneric.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/actorsDIE.tres" type="Animation" id=5]
-[ext_resource path="res://assets/OutlineShader.tres" type="Material" id=6]
-[ext_resource path="res://prefab/Explosion.tscn" type="PackedScene" id=7]
-[ext_resource path="res://prefab/HealthBarContainer.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/actorsEMIT.tres" type="Animation" id=9]
+[ext_resource path="res://actors/EnemyManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://prefab/Explosion.tscn" type="PackedScene" id=5]
+[ext_resource path="res://prefab/HealthBarContainer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/bullets/BulletGeneric.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/sprites/bomb_enemy.png" type="Texture" id=8]
+[ext_resource path="res://assets/OutlineShader.tres" type="Material" id=9]
 [ext_resource path="res://assets/sprites/bullet64.png" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -56,13 +56,13 @@ tracks/2/keys = {
 [node name="BombSpawner" type="Node2D" groups=["BOMB_SPAWNER", "ENEMY"]]
 position = Vector2( 502, 259 )
 script = ExtResource( 3 )
-bullet_scene = ExtResource( 4 )
+bullet_scene = ExtResource( 7 )
 bullet_speed = 200.0
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.854902, 0.172549, 0.219608, 1 )
-material = ExtResource( 6 )
-texture = ExtResource( 1 )
+material = ExtResource( 9 )
+texture = ExtResource( 8 )
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -72,17 +72,17 @@ texture = ExtResource( 1 )
 position = Vector2( 0, 3 )
 shape = SubResource( 1 )
 
-[node name="HealthBarContainer" parent="." instance=ExtResource( 8 )]
+[node name="HealthBarContainer" parent="." instance=ExtResource( 6 )]
 
-[node name="EnemyManager" parent="." instance=ExtResource( 2 )]
+[node name="EnemyManager" parent="." instance=ExtResource( 4 )]
 hp = 8.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DIE = ExtResource( 5 )
-anims/EMIT = ExtResource( 9 )
+anims/DIE = ExtResource( 2 )
+anims/EMIT = ExtResource( 1 )
 anims/RESET = SubResource( 2 )
 
-[node name="Explosion" parent="." instance=ExtResource( 7 )]
+[node name="Explosion" parent="." instance=ExtResource( 5 )]
 emitting = false
 
 [node name="EmitDot" type="Sprite" parent="."]

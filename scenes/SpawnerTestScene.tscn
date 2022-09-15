@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/BulletSpawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/DebugInfo.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/enemies/NinjaSpawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://prefab/Camera2DWithScreenShake.tscn" type="PackedScene" id=5]
 
 [node name="SpawnerTestScene" type="Node2D"]
 
@@ -19,3 +21,11 @@ bulletColor = "B"
 [node name="DebugInfo" parent="." instance=ExtResource( 3 )]
 margin_right = 1280.0
 margin_bottom = 720.0
+
+[node name="NinjaSpawner" parent="." instance=ExtResource( 4 )]
+position = Vector2( 897, 456 )
+
+[node name="NinjaSpawner2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 227, 316 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 5 )]

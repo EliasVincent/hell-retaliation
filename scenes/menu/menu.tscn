@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/ui-theme.tres" type="Theme" id=1]
-[ext_resource path="res://actors/ClockSpawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/enemies/ClockSpawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/white360p.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/open-sans/open-sans-bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scenes/menu/menu.gd" type="Script" id=5]

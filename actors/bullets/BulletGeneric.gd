@@ -31,6 +31,7 @@ func _ready():
 	#$Timer.start(lifetime)
 	# if timer too high. could be cool idea tho
 	pass
+	#self.global_scale = Vector2(0.25,0.25)
 
 func init():
 	if bulletColor == "B":

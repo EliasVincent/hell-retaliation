@@ -47,7 +47,8 @@ func _on_Resume_pressed():
 
 func _on_Main_Menu_pressed():
 	# save playerHP. Already done after each stage, here again
-	SaveManager.hpSaver(GlobalVariables.playerHP)
+	SaveManager.hpSaver(GlobalVariables.playerHP) #TODO: remove the old game mode and save system
+	SaveManager.genericSaver(GlobalVariables.playerHP, "user://endless2.txt", "float")
 	Game.change_scene("res://scenes/menu/menu.tscn", {
 		'show_progress_bar': false
 	})

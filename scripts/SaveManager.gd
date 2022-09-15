@@ -1,11 +1,44 @@
 extends Node
 
+
+## A generic saving function
+## dataToSave: the var you want to save
+## fileName: i.e. "user://data.txt"
+## dataTypes: use "String" or "float"
+func genericSaver(dataToSave, fileName: String, dataType: String):
+	var file = File.new()
+	file.open(fileName, File.WRITE)
+	
+	if dataType == "String":
+		file.store_string(dataToSave as String)
+	if dataType == "float":
+		file.store_float(dataToSave as float)
+	else:
+		print("NO VALID FILE TYPE")
+	
+	file.close()
+
+func genericLoader(fileName: String, dataType: String):
+	var file = File.new()
+	var finalData
+	file.open(fileName, File.READ)
+	
+	if dataType == "String":
+		finalData = file.get_as_text()
+	if dataType == "float":
+		finalData = file.get_float()
+	else:
+		print("NO VALID FILE TYPE")
+	
+	file.close()
+	return finalData
+
+#TODO: delete when old game mode is gone
 func saver(dataToSave):
 	var file = File.new()
 	file.open("user://data.txt", File.WRITE)
 	file.store_string(dataToSave as String)
 	file.close()
-
 func loader():
 	var file = File.new()
 	file.open("user://data.txt", File.READ)
@@ -13,8 +46,6 @@ func loader():
 	file.close()
 
 	return textInTheFile
-
-#TODO: this needs to be different
 func hpSaver(dataToSave):
 	var file = File.new()
 	file.open("user://data2.txt", File.WRITE)
@@ -26,29 +57,4 @@ func hpLoader():
 	var textInTheFile = file.get_float()
 	file.close()
 
-	return textInTheFile
-
-# -- ENDLESS MODE --
-func endlessSaver(dataToSave):
-	var file = File.new()
-	file.open("user://endless1.txt", File.WRITE)
-	file.store_string(dataToSave as String)
-	file.close()
-func endlessHpSaver(dataToSave):
-	var file = File.new()
-	file.open("user://endless2.txt", File.WRITE)
-	file.store_float(dataToSave as float)
-	file.close()
-
-func endlessLoader():
-	var file = File.new()
-	file.open("user://endless1.txt", File.READ)
-	var textInTheFile = file.get_as_text()
-	file.close()
-	return textInTheFile
-func endlessHpLoader():
-	var file = File.new()
-	file.open("user://endless2.txt", File.READ)
-	var textInTheFile = file.get_float()
-	file.close()
 	return textInTheFile

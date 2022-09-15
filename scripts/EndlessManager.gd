@@ -2,8 +2,9 @@ extends Node2D
 
 # ENEMIES
 var enemiesToInclude: Array
-onready var clockSpawner = preload("res://actors/ClockSpawner.tscn")
-onready var bombSpawner = preload("res://actors/BombSpawner.tscn")
+onready var clockSpawner = preload("res://actors/enemies/ClockSpawner.tscn")
+onready var bombSpawner = preload("res://actors/enemies/BombSpawner.tscn")
+onready var ninjaSpawner = preload("res://actors/enemies/NinjaSpawner.tscn")
 
 export var currStageCount : int
 var currStage
@@ -27,10 +28,14 @@ var clockSpawnerRngValues = {
 func _ready():
 	# loading currStageCount from save
 	# we subtract 1 cause totalStages
+
+	# _process save methods run before _ready, 
+	# so this always should be safe to "just load"
 	if GlobalVariables.loadLastSave == true:
-		currStageCount = SaveManager.endlessLoader() as int
+		currStageCount = SaveManager.genericLoader("user://endless1.txt", "String") as int
 		if currStageCount > 0:
 			currStageCount -= 1
+		GlobalVariables.playerHP = SaveManager.genericLoader("user://endless2.txt", "float") as float
 	elif GlobalVariables.loadLastSave == false:
 		currStageCount = 0
 	
@@ -47,8 +52,8 @@ func _process(delta):
 	if willSwitch:
 		instanceNextScene()
 		currStageCount += 1
-		SaveManager.endlessSaver(currStageCount)
-		SaveManager.endlessHpSaver(GlobalVariables.playerHP)
+		SaveManager.genericSaver(currStageCount, "user://endless1.txt", "String")
+		SaveManager.genericSaver(GlobalVariables.playerHP, "user://endless2.txt", "float")
 		print("SAVED: ", currStageCount as int, "HP SAVED: ",GlobalVariables.playerHP)
 		willSwitch = false
 	GlobalVariables.stageTimer = stageTimer.time_left
@@ -120,12 +125,15 @@ func create_new_boss(currBoss):
 	pass
 
 func match_enemies_to_include():
+	# each stage the array should be reset
 	enemiesToInclude = []
 	enemiesToInclude.append(clockSpawner)
 	if currStageCount > 4:
 		enemiesToInclude.append(bombSpawner)
 		clockSpawnerRngValues.minHp = 12
 		clockSpawnerRngValues.maxHp = 18
+	if currStageCount > 9:
+		enemiesToInclude.append(ninjaSpawner)
 
 
 func _on_StageTimer_timeout():

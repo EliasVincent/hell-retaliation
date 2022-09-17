@@ -215,15 +215,6 @@ custom_colors/font_color = Color( 0.886275, 0.87451, 0.87451, 1 )
 text = "special thanks:
 @protokrok"
 
-[node name="Developer4" type="Label" parent="."]
-margin_left = 14.0
-margin_top = 677.0
-margin_right = 297.0
-margin_bottom = 748.0
-grow_horizontal = 0
-custom_colors/font_color = Color( 0.886275, 0.87451, 0.87451, 1 )
-text = "song: Aviators - Skeletons"
-
 [node name="Button" type="Button" parent="."]
 visible = false
 margin_left = 868.0
@@ -236,12 +227,18 @@ text = "LEVEL 1"
 position = Vector2( 272, 195 )
 spawn_rate = 2.0
 
+[node name="Sprite" parent="ClockSpawner" index="0"]
+frame = 3
+
 [node name="HealthBarContainer" parent="ClockSpawner" index="7"]
 visible = false
 
 [node name="ClockSpawner2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1056, 195 )
 spawn_rate = 2.0
+
+[node name="Sprite" parent="ClockSpawner2" index="0"]
+frame = 3
 
 [node name="HealthBarContainer" parent="ClockSpawner2" index="7"]
 visible = false

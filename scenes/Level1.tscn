@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefab/Level1BG.tscn" type="PackedScene" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://prefab/GlowEnvironment.tscn" type="PackedScene" id=8]
 [ext_resource path="res://prefab/GameBorder.tscn" type="PackedScene" id=9]
 [ext_resource path="res://actors/HealthPickupSpawner.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/bgm/Skeletons.mp3" type="AudioStream" id=11]
 [ext_resource path="res://assets/GlowEnv.tres" type="Environment" id=13]
 
 [sub_resource type="CanvasItemMaterial" id=2]
@@ -43,11 +42,6 @@ timePerStage = 20.0
 [node name="PauseLayer" parent="." instance=ExtResource( 4 )]
 
 [node name="Camera2D" parent="." instance=ExtResource( 7 )]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
-autoplay = true
-bus = "bgm"
 
 [node name="GameBorder" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1168, 360 )

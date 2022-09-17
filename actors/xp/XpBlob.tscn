@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/sprites/bullet64.png" type="Texture" id=1]
+[ext_resource path="res://actors/xp/XpBlob.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
@@ -63,6 +64,7 @@ hue_variation_curve = SubResource( 9 )
 [node name="XpBlob" type="Node2D"]
 position = Vector2( 168, 104 )
 scale = Vector2( 0.2, 0.2 )
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
@@ -82,3 +84,5 @@ anims/RESET = SubResource( 7 )
 amount = 12
 speed_scale = 1.22
 process_material = SubResource( 4 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

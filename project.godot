@@ -47,6 +47,7 @@ Utils="*res://addons/game-template/utils.gd"
 GlobalVariables="*res://global_variables.gd"
 GlobalSounds="*res://scenes/globals/GlobalSounds.tscn"
 SaveManager="*res://scripts/SaveManager.gd"
+XpManager="*res://actors/xp/XpManager.tscn"
 
 [category]
 

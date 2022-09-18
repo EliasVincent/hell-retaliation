@@ -3,6 +3,7 @@ extends Node
 ## then diseappear and add XP points. Then on level up, 
 ## it will spawn a level up animation and menu.
 
+onready var levelUpDialog : PackedScene = preload("res://actors/leveling/LevelUpDialog.tscn")
 
 func add_xp(xpToGive: float):
 	GlobalVariables.endlessPlayerXp += xpToGive
@@ -11,6 +12,7 @@ func levelUpPlayer():
 	# This will be called when the player levels up.
 	# It will spawn a level up animation and menu.
 	# It will also update the player's stats.
+	GlobalVariables.endlessPlayerLevel += 1
 	
 	# Spawn level up animation
 	

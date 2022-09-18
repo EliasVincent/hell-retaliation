@@ -7,6 +7,7 @@ export (float) var xpToGive = 10.0
 
 var canGiveXp: bool = true
 
+onready var player: KinematicBody2D = get_tree().get_nodes_in_group("PLAYER")[0]
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("PLAYER"):
@@ -22,7 +23,6 @@ func _on_Area2D_body_entered(body):
 # Get player node position
 # Move self towards the player
 func _process(delta):
-	var player: KinematicBody2D = get_tree().get_nodes_in_group("PLAYER")[0]
 	var playerPos = player.position
 	var selfPos = self.position
 	var distance = playerPos.distance_to(selfPos)

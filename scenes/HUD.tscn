@@ -48,3 +48,11 @@ margin_right = 1280.0
 margin_bottom = 32.0
 theme = SubResource( 4 )
 percent_visible = false
+
+[node name="XpLevelCounter" type="RichTextLabel" parent="."]
+margin_left = 655.0
+margin_top = 9.0
+margin_right = 695.0
+margin_bottom = 49.0
+theme = ExtResource( 2 )
+text = "1"

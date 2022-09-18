@@ -8,18 +8,6 @@ radius = 32.0
 
 [sub_resource type="Animation" id=7]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 168, 104 ) ]
-}
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.768 )
@@ -62,9 +50,9 @@ hue_variation_random = 0.01
 hue_variation_curve = SubResource( 9 )
 
 [node name="XpBlob" type="Node2D"]
-position = Vector2( 168, 104 )
 scale = Vector2( 0.2, 0.2 )
 script = ExtResource( 2 )
+moveSpeed = 180.0
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false

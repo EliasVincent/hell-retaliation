@@ -1,8 +1,9 @@
 extends Control
 
-onready var progressBar = $ProgressBar
-onready var timerProgress = $TimerProgress
-onready var xpProgress = $XpProgress
+onready var progressBar : ProgressBar = $ProgressBar
+onready var timerProgress : ProgressBar = $TimerProgress
+onready var xpProgress : ProgressBar = $XpProgress
+onready var xpLevelCounter : RichTextLabel = $XpLevelCounter
 
 var stageTimer : float
 
@@ -14,3 +15,5 @@ func _process(delta):
 	
 	# display the xp in a value from 0 to 100 relative to the threshold and previous threshold, like a bar
 	xpProgress.value = (GlobalVariables.endlessPlayerXp - GlobalVariables.endlessLevelUpPrevThreshold) / (GlobalVariables.endlessLevelUpThreshold - GlobalVariables.endlessLevelUpPrevThreshold) * 100
+	
+	xpLevelCounter.text = str(GlobalVariables.endlessPlayerLevel)

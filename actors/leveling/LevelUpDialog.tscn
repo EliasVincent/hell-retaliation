@@ -1,0 +1,178 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://actors/leveling/LevelUpDialog.gd" type="Script" id=1]
+[ext_resource path="res://assets/themes/scifi-theme/sci-fi-theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/themes/scifi-theme/Pixel Square 10.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 23
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 23
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "FADE_IN"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "pause"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "FADE_OUT_AND_KILL"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "close"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[node name="LevelUpDialog" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[node name="DialogContainer" type="Control" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="Panel2" type="Panel" parent="DialogContainer"]
+margin_left = 410.0
+margin_top = 16.0
+margin_right = 908.0
+margin_bottom = 85.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogContainer/Panel2"]
+margin_right = 496.0
+margin_bottom = 65.0
+custom_fonts/bold_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "
+
+
+[center][b][wave amp=50 freq=2]Level Up!"
+text = "
+
+
+Level Up!"
+scroll_active = false
+
+[node name="Panel" type="Panel" parent="DialogContainer"]
+margin_left = 410.0
+margin_top = 100.0
+margin_right = 908.0
+margin_bottom = 696.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogContainer/Panel"]
+margin_top = 5.0
+margin_right = 496.0
+margin_bottom = 70.0
+custom_fonts/bold_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "
+
+
+[center][b]SELECT UPGRADE:"
+text = "
+
+
+SELECT UPGRADE:"
+scroll_active = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogContainer/Panel"]
+margin_left = 34.0
+margin_top = 91.0
+margin_right = 457.0
+margin_bottom = 542.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Button1" type="Button" parent="DialogContainer/Panel/VBoxContainer"]
+margin_right = 423.0
+margin_bottom = 147.0
+size_flags_vertical = 3
+text = "MEOW"
+
+[node name="Button2" type="Button" parent="DialogContainer/Panel/VBoxContainer"]
+margin_top = 151.0
+margin_right = 423.0
+margin_bottom = 299.0
+size_flags_vertical = 3
+text = "MEOW 2"
+
+[node name="Button3" type="Button" parent="DialogContainer/Panel/VBoxContainer"]
+margin_top = 303.0
+margin_right = 423.0
+margin_bottom = 451.0
+size_flags_vertical = 3
+text = "MEOW 3"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/FADE_IN = SubResource( 3 )
+anims/FADE_OUT_AND_KILL = SubResource( 5 )
+anims/RESET = SubResource( 4 )
+
+[connection signal="pressed" from="DialogContainer/Panel/VBoxContainer/Button1" to="." method="_on_Button1_pressed"]
+[connection signal="pressed" from="DialogContainer/Panel/VBoxContainer/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="DialogContainer/Panel/VBoxContainer/Button3" to="." method="_on_Button3_pressed"]

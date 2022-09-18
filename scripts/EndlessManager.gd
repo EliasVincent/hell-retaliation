@@ -17,7 +17,7 @@ onready var stageTimer = $StageTimer
 export (float) var timePerStage = 60.0
 
 # RNG Values for spawning
-var clockSpawnerRngValues = {
+var clockSpawnerRngValues: Dictionary = {
 	"minHp" : 2,
 	"maxHp" : 5,
 	"minSpeed" : 80,

@@ -42,6 +42,7 @@ export (bool) var log_to_console;
 export var can_fire = true
 
 onready var animation_player = $AnimationPlayer
+onready var enemy_manager = $EnemyManager
 
 func _ready():
 	$Timer.wait_time = spawn_rate
@@ -113,6 +114,12 @@ func spawn_bullets():
 			print("Bullet " + str(i) + " @ " + str(rotations[i]) + "deg");
 	
 	return spawned_bullets;
+
+# call die() in the enemy manager
+func call_timeout_die():
+	#TODO: special die animation on timeout?
+	enemy_manager.die()
+
 
 func _on_Timer_timeout():
 #	if !is_manual:

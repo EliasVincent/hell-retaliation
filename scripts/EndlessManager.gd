@@ -104,6 +104,12 @@ func create_new_stage(currStageCount):
 		if enemy.is_in_group("CLOCK_SPAWNER"):
 			enemy.number_of_bullets = rand_range(3, 8)
 			enemyManager.hp = rand_range(clockSpawnerRngValues.minHp, clockSpawnerRngValues.maxHp)
+
+			var oneOrZero = randi() % 2
+			if oneOrZero == 0:
+				enemy.changeColorAfterShot = true
+			else:
+				enemy.changeColorAfterShot = false
 		
 		if enemy.is_in_group("BOMB_SPAWNER"):
 			#enemy.changeColorAfterShot = randi() % 2 == 0
@@ -140,12 +146,10 @@ func _on_StageTimer_timeout():
 	# get all remaining ENEMY 
 	var remainingEnemies = get_tree().get_nodes_in_group("ENEMY")
 	for enemy in remainingEnemies:
-		#TODO: handle this mess AAAAAA
-		#this could be enemy.die()??
-		# remove from ENEMY group -> 0 in group -> next 
-		
+		# try changing order if this doesnt work
+		enemy.call_timeout_die()
 		enemy.remove_from_group("ENEMY")
-		enemy.queue_free()
+
 		# get animationPlayer of node
 		var animPlayer = enemy.get_node("AnimationPlayer")
 		animPlayer.play("DIE")

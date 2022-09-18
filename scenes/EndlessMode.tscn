@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/EndlessManager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/EndlessMode.gd" type="Script" id=8]
 [ext_resource path="res://scenes/EndlessInfos.gd" type="Script" id=9]
+[ext_resource path="res://scenes/DebugInfo.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1
@@ -57,3 +58,11 @@ margin_left = 7.0
 margin_top = 144.0
 margin_right = 47.0
 margin_bottom = 158.0
+
+[node name="DebugInfo" parent="." instance=ExtResource( 10 )]
+margin_left = 5.0
+margin_top = 209.0
+margin_right = 5.0
+margin_bottom = 209.0
+rect_min_size = Vector2( 1000, 1000 )
+rect_scale = Vector2( 0.7, 0.7 )

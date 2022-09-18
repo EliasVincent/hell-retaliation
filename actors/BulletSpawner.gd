@@ -117,8 +117,7 @@ func spawn_bullets():
 
 # call die() in the enemy manager
 func call_timeout_die():
-	#TODO: special die animation on timeout?
-	enemy_manager.die()
+	enemy_manager.die(true)
 
 
 func _on_Timer_timeout():

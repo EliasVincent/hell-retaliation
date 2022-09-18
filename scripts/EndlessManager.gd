@@ -18,8 +18,8 @@ export (float) var timePerStage = 60.0
 
 # RNG Values for spawning
 var clockSpawnerRngValues = {
-	"minHp" : 10,
-	"maxHp" : 15,
+	"minHp" : 2,
+	"maxHp" : 5,
 	"minSpeed" : 80,
 	"maxSpeed" : 250,
 }
@@ -136,8 +136,8 @@ func match_enemies_to_include():
 	enemiesToInclude.append(clockSpawner)
 	if currStageCount > 4:
 		enemiesToInclude.append(bombSpawner)
-		clockSpawnerRngValues.minHp = 12
-		clockSpawnerRngValues.maxHp = 18
+		clockSpawnerRngValues.minHp = 6
+		clockSpawnerRngValues.maxHp = 8
 	if currStageCount > 9:
 		enemiesToInclude.append(ninjaSpawner)
 

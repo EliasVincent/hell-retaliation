@@ -6,10 +6,11 @@ var initialStageTime : float = 60;
 var loadLastSave = false;
 
 # XP player has in endless mode
-var enldessPlayerXp: float = 0.0;
+var endlessPlayerXp: float = 0.0;
 var initialEndlessLevelUpThreshold: float = 100.0;
-var endlessLevelUpMultiplier: float = 1.2;
+var endlessLevelUpMultiplier: float = 1.6;
 var endlessLevelUpThreshold: float = 100.0;
+var endlessLevelUpPrevThreshold: float = 0.0;
 
 func _ready():
 	endlessLevelUpThreshold = initialEndlessLevelUpThreshold
@@ -23,4 +24,5 @@ func _process(delta):
 
 
 func update_endless_level_up_threshold():
+	endlessLevelUpPrevThreshold = endlessLevelUpThreshold
 	endlessLevelUpThreshold *= endlessLevelUpMultiplier

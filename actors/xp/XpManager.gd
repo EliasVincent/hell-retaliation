@@ -5,7 +5,7 @@ extends Node
 
 
 func add_xp(xpToGive: float):
-	GlobalVariables.enldessPlayerXp += xpToGive
+	GlobalVariables.endlessPlayerXp += xpToGive
 
 func levelUpPlayer():
 	# This will be called when the player levels up.
@@ -20,3 +20,11 @@ func levelUpPlayer():
 	GlobalVariables.update_endless_level_up_threshold()
 	
 	# Update player stats in the HUD and XP bar
+
+func _process(delta):
+	if GlobalVariables.endlessPlayerXp >= GlobalVariables.endlessLevelUpThreshold:
+		levelUpPlayer()
+	
+func _input(event):
+	if event.is_action_pressed("give_xp"):
+		add_xp(10.0)

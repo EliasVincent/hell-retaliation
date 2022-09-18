@@ -10,6 +10,7 @@ onready var player_sprite = $Sprite
 onready var parry_area = $ParryArea
 onready var parry_cooldown_timer = $ParryCooldownTimer
 onready var flySoundDelay = $FlySoundDelay
+onready var perkApplier = $PerkApplier
 
 onready var player_hit_sound = $Sfx/PlayerHit
 onready var player_death_sound = $Sfx/PlayerDeath
@@ -175,7 +176,9 @@ func instance_parry_bullet(bulletArray):
 		# _ready() does not work for the color
 		spawned_bullets[i].init();
 
-
+# just move perk along
+func apply_perk(perk):
+	perkApplier.apply_perk(perk)
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	pass
@@ -230,5 +233,5 @@ func _on_DamageCooldown_timeout():
 
 
 func _on_HealingTickrate_timeout():
-	if GlobalVariables.playerHP < 92:
+	if GlobalVariables.playerHP < start_hp:
 		GlobalVariables.playerHP += 2

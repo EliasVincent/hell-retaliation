@@ -18,12 +18,14 @@ var perks: Dictionary = {
 	"INCREASE_MAX_HP" : 0,
 	"INCREASE_HP_REGEN": 0,
 	"FASTER_PARRY_TIME": 0,
+	"INCREASE_BULLET_DAMAGE": 0,
 }
 
 var perkNames: Dictionary = {
 	"INCREASE_MAX_HP" : "Increase Max HP",
 	"INCREASE_HP_REGEN": "Increase HP Regen",
 	"FASTER_PARRY_TIME": "Faster Parry Time",
+	"INCREASE_BULLET_DAMAGE": "Increase Bullet Damage",
 }
 
 func _ready():

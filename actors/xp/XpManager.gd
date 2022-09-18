@@ -14,12 +14,12 @@ func levelUpPlayer():
 	# It will also update the player's stats.
 	GlobalVariables.endlessPlayerLevel += 1
 	
-	# Spawn level up animation
-	
-	# Spawn level up menu
-	
-	# Update xp threshold
 	GlobalVariables.update_endless_level_up_threshold()
+
+	# game will be paused here
+	var levelUpDialogInstance = levelUpDialog.instance()
+	get_tree().get_root().add_child(levelUpDialogInstance)
+
 	
 	# Update player stats in the HUD and XP bar
 

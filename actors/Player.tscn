@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/playerNEW.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/sfx/successful_parry.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/sfx/player_hit.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/sfx/color_switch.wav" type="AudioStream" id=8]
+[ext_resource path="res://actors/leveling/PerkApplier.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -219,6 +220,9 @@ one_shot = true
 [node name="HealingTickrate" type="Timer" parent="."]
 wait_time = 2.5
 autostart = true
+
+[node name="PerkApplier" type="Node2D" parent="."]
+script = ExtResource( 9 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="ParryArea" to="." method="_on_ParryArea_area_entered"]

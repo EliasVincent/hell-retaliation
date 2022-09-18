@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/ui-theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/themes/scifi-theme/sci-fi-theme.tres" type="Theme" id=1]
 [ext_resource path="res://actors/enemies/ClockSpawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/white360p.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/open-sans/open-sans-bold.ttf" type="DynamicFontData" id=4]
@@ -122,13 +122,13 @@ custom_constants/separation = 16
 
 [node name="ContinueButton" type="Button" parent="VBoxContainer"]
 margin_right = 200.0
-margin_bottom = 40.0
+margin_bottom = 19.0
 text = "CONTINUE"
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
-margin_top = 56.0
+margin_top = 35.0
 margin_right = 200.0
-margin_bottom = 126.0
+margin_bottom = 105.0
 rect_min_size = Vector2( 200, 70 )
 focus_neighbour_bottom = NodePath("../ExitButton")
 focus_next = NodePath("../ExitButton")
@@ -138,9 +138,9 @@ __meta__ = {
 }
 
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
-margin_top = 142.0
+margin_top = 121.0
 margin_right = 200.0
-margin_bottom = 212.0
+margin_bottom = 191.0
 rect_min_size = Vector2( 200, 70 )
 focus_neighbour_top = NodePath("../PlayButton")
 focus_previous = NodePath("../PlayButton")
@@ -159,7 +159,7 @@ margin_bottom = -18.0
 
 [node name="GameVersion" type="Label" parent="Version"]
 margin_right = 182.0
-margin_bottom = 34.0
+margin_bottom = 9.0
 text = "<x.y.z>"
 
 [node name="GodotVersion" type="Label" parent="Version"]
@@ -185,22 +185,22 @@ grow_vertical = 0
 
 [node name="MadeByLabel" type="Label" parent="Credits"]
 margin_right = 243.0
-margin_bottom = 34.0
+margin_bottom = 9.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "made by:"
 
 [node name="Developer1" type="Label" parent="Credits"]
-margin_top = 38.0
+margin_top = 13.0
 margin_right = 243.0
-margin_bottom = 72.0
+margin_bottom = 22.0
 grow_horizontal = 0
 custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
 text = "@eliasvsimon"
 
 [node name="Developer2" type="Label" parent="Credits"]
-margin_top = 76.0
+margin_top = 26.0
 margin_right = 243.0
-margin_bottom = 110.0
+margin_bottom = 35.0
 grow_horizontal = 0
 custom_colors/font_color = Color( 0.886275, 0.87451, 0.87451, 1 )
 text = "@soulpixeliv"
@@ -228,7 +228,7 @@ position = Vector2( 272, 195 )
 spawn_rate = 2.0
 
 [node name="Sprite" parent="ClockSpawner" index="0"]
-frame = 2
+frame = 3
 
 [node name="HealthBarContainer" parent="ClockSpawner" index="7"]
 visible = false
@@ -238,7 +238,7 @@ position = Vector2( 1056, 195 )
 spawn_rate = 2.0
 
 [node name="Sprite" parent="ClockSpawner2" index="0"]
-frame = 2
+frame = 3
 
 [node name="HealthBarContainer" parent="ClockSpawner2" index="7"]
 visible = false

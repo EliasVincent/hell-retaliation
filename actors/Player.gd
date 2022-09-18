@@ -5,12 +5,14 @@ export (int) var speed = 200;
 export (int) var start_hp : int = 100;
 onready var hp = start_hp;
 var can_take_damage = true;
+var healing_tickrate_time: float = 2.5
 onready var animation_player = $AnimationPlayer
 onready var player_sprite = $Sprite
 onready var parry_area = $ParryArea
 onready var parry_cooldown_timer = $ParryCooldownTimer
 onready var flySoundDelay = $FlySoundDelay
 onready var perkApplier = $PerkApplier
+onready var healingTickrateTimer : Timer = $HealingTickrate
 
 onready var player_hit_sound = $Sfx/PlayerHit
 onready var player_death_sound = $Sfx/PlayerDeath
@@ -200,7 +202,11 @@ func _ready():
 		animation_player.play("B");
 	
 	GlobalVariables.playerHP = start_hp
+	healingTickrateTimer.wait_time = healing_tickrate_time
 
+func update_healing_tickrate_time(time: float):
+	healing_tickrate_time = time
+	healingTickrateTimer.wait_time = healing_tickrate_time
 
 func _on_ParryArea_area_entered(area):
 	if area.is_in_group("BULLET"):

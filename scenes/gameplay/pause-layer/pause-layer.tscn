@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://assets/themes/scifi-theme/sci-fi-theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/gameplay/pause-layer/pause-layer.gd" type="Script" id=2]
 [ext_resource path="res://assets/ui-theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/pause_button.png" type="Texture" id=4]
@@ -26,15 +27,12 @@ margin_top = 16.0
 margin_right = 78.0
 margin_bottom = 78.0
 texture_normal = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Pause" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 3 )
+theme = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -57,21 +55,18 @@ margin_top = -100.0
 margin_right = 80.5
 margin_bottom = 100.0
 custom_constants/separation = 20
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Resume" type="LinkButton" parent="Pause/VBoxOptions"]
+[node name="Resume" type="Button" parent="Pause/VBoxOptions"]
 margin_right = 161.0
-margin_bottom = 34.0
-focus_mode = 2
+margin_bottom = 90.0
+size_flags_vertical = 3
 text = "RESUME"
 
-[node name="Main Menu" type="LinkButton" parent="Pause/VBoxOptions"]
-margin_top = 54.0
+[node name="Main Menu" type="Button" parent="Pause/VBoxOptions"]
+margin_top = 110.0
 margin_right = 161.0
-margin_bottom = 88.0
-focus_mode = 2
+margin_bottom = 200.0
+size_flags_vertical = 3
 text = "MAIN MENU"
 
 [connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]

@@ -7,6 +7,9 @@ onready var xpLevelCounter : RichTextLabel = $XpLevelCounter
 
 var stageTimer : float
 
+func _ready():
+	self.pause_mode = Node.PAUSE_MODE_PROCESS
+
 func _process(delta):
 	progressBar.value = GlobalVariables.playerHP
 	stageTimer = GlobalVariables.stageTimer

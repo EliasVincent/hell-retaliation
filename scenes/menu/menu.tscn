@@ -163,10 +163,9 @@ margin_bottom = 9.0
 text = "<x.y.z>"
 
 [node name="GodotVersion" type="Label" parent="Version"]
-visible = false
-margin_top = 38.0
+margin_top = 13.0
 margin_right = 182.0
-margin_bottom = 72.0
+margin_bottom = 22.0
 custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
 text = "<GodotVersion>"
 script = SubResource( 1 )
@@ -228,7 +227,7 @@ position = Vector2( 272, 195 )
 spawn_rate = 2.0
 
 [node name="Sprite" parent="ClockSpawner" index="0"]
-frame = 3
+frame = 1
 
 [node name="HealthBarContainer" parent="ClockSpawner" index="7"]
 visible = false
@@ -238,7 +237,7 @@ position = Vector2( 1056, 195 )
 spawn_rate = 2.0
 
 [node name="Sprite" parent="ClockSpawner2" index="0"]
-frame = 3
+frame = 1
 
 [node name="HealthBarContainer" parent="ClockSpawner2" index="7"]
 visible = false

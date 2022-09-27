@@ -26,6 +26,9 @@ onready var debug_label = $Label
 onready var parry_bullet : PackedScene = preload("res://actors/bullets/ParryBullet.tscn")
 var can_parry = true
 
+# PERK FASTER_PARRY_TIME
+var parry_bullet_fly_time: float = 2.0
+
 export (bool) var clamp_to_window_borders = true;
 onready var screen_borders = Vector2(
 	ProjectSettings.get_setting("display/window/size/width"),
@@ -171,6 +174,9 @@ func instance_parry_bullet(bulletArray):
 		spawned_bullets[i].rotation_change = bulletRotationChange;
 		
 		spawned_bullets[i].spawner = bulletArray[i].get_spawner();
+
+		# PERK FASTER_PARRY_TIME
+		spawned_bullets[i].flyTime = parry_bullet_fly_time;
 		
 		
 		spawned_bullets[i].color_state = color_state;

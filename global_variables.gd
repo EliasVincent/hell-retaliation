@@ -13,6 +13,8 @@ var endlessLevelUpMultiplier: float = 1.6;
 var endlessLevelUpThreshold: float = 100.0;
 var endlessLevelUpPrevThreshold: float = 0.0;
 
+var parryBulletDamage: float = 1.0;
+
 # Perks Array
 var perks: Dictionary = {
 	"INCREASE_MAX_HP" : 0,

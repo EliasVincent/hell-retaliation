@@ -1,7 +1,7 @@
 extends Area2D
 
 export (float) var speed = 400
-export (float) var time = 2.0
+var flyTime: float = 2.0
 export (float) var initTime = 0.3
 onready var timer = $Timer
 onready var initTimer = $InitTimer
@@ -28,11 +28,11 @@ enum ColorState {
 onready var color_state
 
 func _ready():
-	#print("I'm instanced!")
-	timer.start(time)
 	initTimer.start(initTime)
 
 func init():
+	timer.wait_time = flyTime
+	timer.start(flyTime)
 	#print("ParryBullet ColorState ", color_state)
 	if color_state == ColorState.B:
 		#print("I SHOULD BE BLACK")

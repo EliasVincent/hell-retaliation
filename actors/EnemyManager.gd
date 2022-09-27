@@ -24,6 +24,7 @@ func take_damage(damage: float):
 	hp -= damage
 	enemyHit.play()
 	print("Enemy HP: ", hp)
+	print("RECIEVED DAMAGE: ", damage)
 
 func die(timeout: bool = false):
 	willDie = false
@@ -45,6 +46,6 @@ func remove_enemy():
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("PARRYBULLET"):
-		# maybe different bullets do different damage?
-		take_damage(1)
+		#TODO: maybe different bullets do different damage?
+		take_damage(GlobalVariables.parryBulletDamage)
 		area.queue_free()

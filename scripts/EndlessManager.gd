@@ -41,6 +41,9 @@ func _ready():
 	
 	GlobalVariables.initialStageTime = timePerStage
 
+	# set game border coords for global variables, so EnemyManager can set positions
+	GlobalVariables.gameBorderCoords = Vector2(get_viewport_rect().size.x - 256, get_viewport_rect().size.y - 80)
+
 func _process(delta):
 	# this will be a mess. DO NOT PUT ENEMIES OUTSIDE STAGES IN ENEMY GROUP
 	# If you want ie a bossfight that boss should be it's own group
@@ -76,7 +79,8 @@ func instanceNextScene():
 	stageTimer.stop()
 	stageTimer.start(timePerStage)
 
-
+# Create a new stage an populate it with enemies
+# each enemy grabs the EnemyManager
 func create_new_stage(currStageCount):
 	var stage = Node2D.new()
 	# Anzahl an Gegnern
@@ -122,6 +126,12 @@ func create_new_stage(currStageCount):
 
 		enemy.bullet_speed = rand_range(clockSpawnerRngValues.minSpeed, clockSpawnerRngValues.maxSpeed)
 		enemy.bulletRotationChange = rand_range(0, 15)
+
+		# Enemy Movement RNG
+		enemyManager.movementSpeed = rand_range(50, 200)
+		enemyManager.movementDurationTime = rand_range(0.8, 2)
+		enemyManager.movementCooldownTime = rand_range(1.5, 4)
+
 	return stage
 
 func create_new_boss(currBoss):

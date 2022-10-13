@@ -1,5 +1,7 @@
 extends Node
 
+var gameBorderCoords : Vector2
+
 var playerHP : float;
 var stageTimer : float;
 var initialStageTime : float = 60;

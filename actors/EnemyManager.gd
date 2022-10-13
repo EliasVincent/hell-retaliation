@@ -18,6 +18,9 @@ var canTakeDamage = true
 var willDie = true
 var initialHp : float
 
+# you can disable movement entirely
+var isMovementEnabled : bool = true
+
 var isMovementActive : bool = false
 var isMoving : bool = false
 var movementStartPosition : Vector2
@@ -44,12 +47,11 @@ func _physics_process(delta):
 			die()
 	
 	# Movement
-	if isMovementActive:
-		if isMoving:
-			# move parent position start to end position within the movementDurationTime
+	if isMovementEnabled and isMovementActive and isMoving:
+		# move parent position start to end position within the movementDurationTime
 
-			var direction = movementEndPosition - parent.position
-			parent.position += direction.normalized() * movementSpeed * delta	
+		var direction = movementEndPosition - parent.position
+		parent.position += direction.normalized() * movementSpeed * delta	
 				
 
 func take_damage(damage: float):

@@ -38,7 +38,9 @@ func _ready():
 	healthBar = get_parent().get_node("HealthBarContainer/ProgressBar")
 
 	movementStartPosition = parent.position
+	set_movement_goal_position()
 	activate_movement(movementSpeed, movementDurationTime, movementCooldownTime)
+	
 
 func _physics_process(delta):
 	healthBar.value = (hp / initialHp) * 100
@@ -51,8 +53,7 @@ func _physics_process(delta):
 		# move parent position start to end position within the movementDurationTime
 
 		var direction = movementEndPosition - parent.position
-		parent.position += direction.normalized() * movementSpeed * delta	
-				
+		parent.position += direction.normalized() * movementSpeed * delta
 
 func take_damage(damage: float):
 	hp -= damage
@@ -79,10 +80,22 @@ func remove_enemy():
 
 func set_movement_goal_position():
 	movementEndPosition = Vector2(rand_range(256, get_viewport_rect().size.x - 256), rand_range(80, get_viewport_rect().size.y - 80))
+	print(movementEndPosition)
 	# wenn start und end position zu nah beieinander sind, dann setze neue end position
 	if movementStartPosition.distance_to(movementEndPosition) < 10:
 		set_movement_goal_position()
 
+
+func start_cooldownTimer(_movementDurationTime, _movementCooldownTime):
+	movementCooldown.stop()
+	movementDuration.wait_time = _movementDurationTime
+	movementCooldown.wait_time = _movementCooldownTime
+	movementCooldown.start(_movementCooldownTime)
+	print("cooldown started, ", movementCooldown.wait_time, movementCooldown.is_stopped())
+func start_durationTimer(_movementDurationTime, _movementCooldownTime):
+	movementDuration.wait_time = _movementDurationTime
+	movementCooldown.wait_time = _movementCooldownTime
+	movementDuration.start()
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("PARRYBULLET"):
@@ -91,14 +104,18 @@ func _on_Area2D_area_entered(area):
 		area.queue_free()
 
 
-func _on_MovementCooldown_timeout():
-	set_movement_goal_position()
-	isMoving = true
-	movementDuration.start()
-	
 
+func _on_MovementCooldown_timeout():
+	# you *HAVE* to stop the timer first.
+	# otherwise it will not start the other one.
+	movementCooldown.stop()
+	print("Movement TO")
+	isMoving = true
+	set_movement_goal_position()
+	start_durationTimer(movementDurationTime, movementCooldownTime)
 
 func _on_MovementDuration_timeout():
+	movementDuration.stop()
+	print("Duration TO")
 	isMoving = false
-	movementStartPosition = parent.position
-	movementCooldown.start()
+	start_cooldownTimer(movementDurationTime, movementCooldownTime)

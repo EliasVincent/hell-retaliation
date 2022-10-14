@@ -87,7 +87,7 @@ func create_new_stage(currStageCount):
 	for i in rand_range(2,5):
 		# instance enemy out of the inclusion array
 		var enemy = enemiesToInclude[randi() % enemiesToInclude.size()].instance()
-		stage.add_child(enemy)
+		
 		var enemyManager = enemy.get_node("EnemyManager")
 		# setze die Position des Gegners
 		enemy.position = Vector2(rand_range(256, get_viewport_rect().size.x - 256), rand_range(80, get_viewport_rect().size.y - 80))
@@ -131,6 +131,8 @@ func create_new_stage(currStageCount):
 		enemyManager.movementSpeed = rand_range(50, 200)
 		enemyManager.movementDurationTime = rand_range(0.8, 2)
 		enemyManager.movementCooldownTime = rand_range(1.5, 4)
+
+		stage.add_child(enemy)
 
 	return stage
 

@@ -48,7 +48,7 @@ changeBulletSize = true
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Timer" type="Timer" parent="."]

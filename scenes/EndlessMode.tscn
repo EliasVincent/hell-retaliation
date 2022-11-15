@@ -37,7 +37,7 @@ modulate = Color( 0.752941, 0.752941, 0.752941, 1 )
 position = Vector2( 649, 484 )
 
 [node name="EndlessManager" parent="." instance=ExtResource( 1 )]
-timePerStage = 20.0
+timePerStage = 45.0
 
 [node name="GameBorder" parent="." instance=ExtResource( 4 )]
 modulate = Color( 1, 1, 1, 0.392157 )

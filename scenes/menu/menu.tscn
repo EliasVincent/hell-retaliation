@@ -231,9 +231,6 @@ text = "LEVEL 1"
 position = Vector2( 272, 195 )
 spawn_rate = 2.0
 
-[node name="Sprite" parent="ClockSpawner" index="0"]
-frame = 1
-
 [node name="HealthBarContainer" parent="ClockSpawner" index="7"]
 visible = false
 
@@ -241,11 +238,26 @@ visible = false
 position = Vector2( 1056, 195 )
 spawn_rate = 2.0
 
-[node name="Sprite" parent="ClockSpawner2" index="0"]
-frame = 1
-
 [node name="HealthBarContainer" parent="ClockSpawner2" index="7"]
 visible = false
+
+[node name="CheckButton" type="CheckButton" parent="."]
+margin_left = 628.0
+margin_top = 581.0
+margin_right = 642.0
+margin_bottom = 590.0
+rect_scale = Vector2( 3.2, 3.2 )
+
+[node name="Title2" type="Label" parent="."]
+margin_left = 383.0
+margin_top = 581.0
+margin_right = 1020.0
+margin_bottom = 664.0
+rect_scale = Vector2( 0.35806, 0.35806 )
+custom_fonts/font = SubResource( 5 )
+text = "toggle auto-parry:"
+align = 1
+uppercase = true
 
 [connection signal="pressed" from="EndlessContinueButton" to="." method="_on_EndlessContinueButton_pressed"]
 [connection signal="pressed" from="EndlessButton" to="." method="_on_EndlessButton_pressed"]
@@ -253,6 +265,7 @@ visible = false
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="toggled" from="CheckButton" to="." method="_on_CheckButton_toggled"]
 
 [editable path="ClockSpawner"]
 [editable path="ClockSpawner2"]

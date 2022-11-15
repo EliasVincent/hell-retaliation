@@ -53,3 +53,7 @@ func _on_EndlessContinueButton_pressed():
 	var params = { show_progress_bar = true }
 	GlobalVariables.loadLastSave = true
 	Game.change_scene("res://scenes/EndlessMode.tscn", params)
+
+
+func _on_CheckButton_toggled(button_pressed):
+	GlobalVariables.autoParry = button_pressed

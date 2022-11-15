@@ -89,11 +89,17 @@ func _physics_process(delta):
 			animation_player.play("B");
 	
 	# Parry
-	if Input.is_action_just_pressed("parry"):
-		if can_parry:
-			can_parry = false
-			parry_cooldown_timer.start(parry_cooldown);
-			parry(parryable_bullets);
+	if GlobalVariables.autoParry == false:
+		if Input.is_action_just_pressed("parry"):
+			if can_parry:
+				can_parry = false
+				parry_cooldown_timer.start(parry_cooldown);
+				parry(parryable_bullets);
+	if GlobalVariables.autoParry == true:
+			if can_parry:
+				can_parry = false
+				parry_cooldown_timer.start(parry_cooldown);
+				parry(parryable_bullets);
 	
 	if can_parry:
 		debug_label.text = str("READY")
@@ -142,7 +148,7 @@ func parry(bullets: Array):
 		bullet.queue_free()
 	
 	if bullets.size() == 0:
-		parry_zero_sound.play()
+		parry_zero_sound.play() if GlobalVariables.autoParry == false else null
 	
 	if bullets.size() > 0:
 		parry_success_sound.play()

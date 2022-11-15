@@ -6,6 +6,7 @@ var playerHP : float;
 var stageTimer : float;
 var initialStageTime : float = 60;
 var loadLastSave = false;
+var autoParry : bool = false;
 
 # XP player has in endless mode
 var endlessPlayerXp: float = 0.0;

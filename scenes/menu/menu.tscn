@@ -231,12 +231,18 @@ text = "LEVEL 1"
 position = Vector2( 272, 195 )
 spawn_rate = 2.0
 
+[node name="Sprite" parent="ClockSpawner" index="0"]
+frame = 2
+
 [node name="HealthBarContainer" parent="ClockSpawner" index="7"]
 visible = false
 
 [node name="ClockSpawner2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1056, 195 )
 spawn_rate = 2.0
+
+[node name="Sprite" parent="ClockSpawner2" index="0"]
+frame = 2
 
 [node name="HealthBarContainer" parent="ClockSpawner2" index="7"]
 visible = false

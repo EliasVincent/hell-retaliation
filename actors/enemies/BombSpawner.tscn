@@ -55,6 +55,7 @@ tracks/2/keys = {
 
 [node name="BombSpawner" type="Node2D" groups=["BOMB_SPAWNER", "ENEMY"]]
 position = Vector2( 502, 259 )
+scale = Vector2( 0.6, 0.6 )
 script = ExtResource( 3 )
 bullet_scene = ExtResource( 7 )
 bullet_speed = 200.0

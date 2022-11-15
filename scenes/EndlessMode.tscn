@@ -1,28 +1,31 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/EndlessManager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/gameplay/pause-layer/pause-layer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prefab/GameBorder.tscn" type="PackedScene" id=4]
-[ext_resource path="res://prefab/Level1BG.tscn" type="PackedScene" id=5]
+[ext_resource path="res://prefab/backgrounds/BG1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://prefab/Camera2DWithScreenShake.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/EndlessMode.gd" type="Script" id=8]
 [ext_resource path="res://scenes/EndlessInfos.gd" type="Script" id=9]
 [ext_resource path="res://scenes/DebugInfo.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/HUDTheme.tres" type="Theme" id=11]
+[ext_resource path="res://assets/fonts/open-sans/open-sans-bold.ttf" type="DynamicFontData" id=12]
 
-[sub_resource type="CanvasItemMaterial" id=1]
-light_mode = 1
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 14
+font_data = ExtResource( 12 )
 
 [node name="EndlessMode" type="Node2D"]
 script = ExtResource( 8 )
 
-[node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 1 )
-position = Vector2( 352, 240 )
-scale = Vector2( 4, 4 )
-
-[node name="Viewport" parent="." instance=ExtResource( 5 )]
+[node name="BG1" parent="." instance=ExtResource( 5 )]
+modulate = Color( 0.752941, 0.752941, 0.752941, 1 )
 
 [node name="Container" type="Node2D" parent="."]
 
@@ -66,3 +69,28 @@ margin_right = 5.0
 margin_bottom = 209.0
 rect_min_size = Vector2( 1000, 1000 )
 rect_scale = Vector2( 0.7, 0.7 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Controls" type="RichTextLabel" parent="Control"]
+margin_left = 8.0
+margin_top = 496.0
+margin_right = 272.0
+margin_bottom = 648.0
+theme = ExtResource( 11 )
+custom_fonts/normal_font = SubResource( 1 )
+text = "L/R - C : SWITCH COLOR
+X - F: PARRY
+A - SPACE : SLOW"
+
+[node name="Watermark" type="RichTextLabel" parent="Control"]
+margin_left = 1144.0
+margin_top = 672.0
+margin_right = 1408.0
+margin_bottom = 824.0
+theme = ExtResource( 11 )
+custom_fonts/normal_font = SubResource( 2 )
+text = "NoR: Milestone 1
+testing only"

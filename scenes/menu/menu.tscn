@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/fonts/open-sans/open-sans-bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scenes/menu/menu.gd" type="Script" id=5]
 
-[sub_resource type="Shader" id=6]
+[sub_resource type="Shader" id=8]
 code = "shader_type canvas_item;
 
 uniform vec4 bg_color: hint_color;
@@ -38,7 +38,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=7]
-shader = SubResource( 6 )
+shader = SubResource( 8 )
 shader_param/bg_color = null
 
 [sub_resource type="DynamicFont" id=5]
@@ -232,7 +232,7 @@ position = Vector2( 272, 195 )
 spawn_rate = 2.0
 
 [node name="Sprite" parent="ClockSpawner" index="0"]
-frame = 3
+frame = 1
 
 [node name="HealthBarContainer" parent="ClockSpawner" index="7"]
 visible = false
@@ -242,7 +242,7 @@ position = Vector2( 1056, 195 )
 spawn_rate = 2.0
 
 [node name="Sprite" parent="ClockSpawner2" index="0"]
-frame = 3
+frame = 1
 
 [node name="HealthBarContainer" parent="ClockSpawner2" index="7"]
 visible = false

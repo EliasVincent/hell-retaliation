@@ -76,6 +76,7 @@ tracks/3/keys = {
 }
 
 [node name="ClockSpawner" type="Node2D" groups=["CLOCK_SPAWNER", "ENEMY"]]
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
 bullet_scene = ExtResource( 2 )
 min_rotation = 35
@@ -85,10 +86,11 @@ spawn_rate = 0.8
 bullet_speed = 300.0
 changeColorAfterShot = true
 rotationChangeAfterTick = 90.0
+changeBulletSize = true
+bulletScaleVector = Vector2( 0.5, 0.5 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 1
 speed_scale = 0.2
 playing = true
 

@@ -146,7 +146,7 @@ radius = 40.0
 
 [node name="Player" type="KinematicBody2D" groups=["PLAYER"]]
 script = ExtResource( 1 )
-healing_tickrate_time = 6.0
+healing_tickrate_time = 9.0
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.55, 0.55 )

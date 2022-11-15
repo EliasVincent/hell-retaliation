@@ -9,6 +9,8 @@ onready var ninjaSpawner = preload("res://actors/enemies/NinjaSpawner.tscn")
 export var currStageCount : int
 var currStage
 var currBoss : int = 1
+var minEnemies : int = 2
+var maxEnemies : int = 4
 
 var willSwitch : bool = false
 
@@ -84,7 +86,7 @@ func instanceNextScene():
 func create_new_stage(currStageCount):
 	var stage = Node2D.new()
 	# Anzahl an Gegnern
-	for i in rand_range(2,5):
+	for i in rand_range(minEnemies, maxEnemies):
 		# instance enemy out of the inclusion array
 		var enemy = enemiesToInclude[randi() % enemiesToInclude.size()].instance()
 		
@@ -146,12 +148,21 @@ func match_enemies_to_include():
 	# each stage the array should be reset
 	enemiesToInclude = []
 	enemiesToInclude.append(clockSpawner)
-	if currStageCount > 4:
+	if currStageCount > 3:
+		minEnemies = 4
+		maxEnemies = 6
 		enemiesToInclude.append(bombSpawner)
 		clockSpawnerRngValues.minHp = 6
 		clockSpawnerRngValues.maxHp = 8
 	if currStageCount > 9:
+		minEnemies = 5
+		maxEnemies = 8
 		enemiesToInclude.append(ninjaSpawner)
+	if currStageCount > 14:
+		minEnemies = 6
+		maxEnemies = 10
+		clockSpawnerRngValues.minHp = 8
+		clockSpawnerRngValues.maxHp = 10
 
 
 func _on_StageTimer_timeout():

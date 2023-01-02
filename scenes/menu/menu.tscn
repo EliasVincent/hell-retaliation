@@ -162,13 +162,13 @@ margin_bottom = -18.0
 
 [node name="GameVersion" type="Label" parent="Version"]
 margin_right = 182.0
-margin_bottom = 14.0
+margin_bottom = 9.0
 text = "<x.y.z>"
 
 [node name="GodotVersion" type="Label" parent="Version"]
-margin_top = 18.0
+margin_top = 13.0
 margin_right = 182.0
-margin_bottom = 32.0
+margin_bottom = 22.0
 custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
 text = "<GodotVersion>"
 script = SubResource( 1 )
